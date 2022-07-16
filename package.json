@@ -7,11 +7,13 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "test": "jest"
+    "test": "jest",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
+    "tw-elements": "^1.0.0-alpha12",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
@@ -23,7 +25,10 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.4.4",
     "jest": "^27.4.4",
-    "postcss": "^8.4.4",
     "vue-jest": "^3.0.4"
+  },
+  "engines": {
+    "pnpm": ">=7.5.1",
+    "node": ">=14.0.0"
   }
 }
