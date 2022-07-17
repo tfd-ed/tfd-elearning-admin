@@ -1,0 +1,35 @@
+/*@font-face {*/
+/*  font-family: 'Lato';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  font-display: swap;*/
+/*  src: url('~assets/fonts/Lato-Regular.ttf') format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'Lato';*/
+/*  font-style: normal;*/
+/*  font-weight: 700;*/
+/*  font-display: swap;*/
+/*  src: url('~assets/fonts/Lato-Bold.ttf') format('truetype');*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: 'Kantumruy';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  font-display: swap;*/
+/*  src: url('~assets/fonts/Kantumruy-Regular.ttf') format('truetype');*/
+/*}*/
+/*Page component */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+.nuxt-link-active {
+  @apply bg-gray-900 text-white ;
+}

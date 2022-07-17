@@ -1,0 +1,675 @@
+/* khmer */
+@font-face {
+  font-family: 'Kantumruy';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Kantumruy-300-khmer1.woff2') format('woff2');
+  unicode-range: U+1780-17FF, U+200C, U+25CC, U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* khmer */
+@font-face {
+  font-family: 'Kantumruy';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Kantumruy-400-khmer2.woff2') format('woff2');
+  unicode-range: U+1780-17FF, U+200C, U+25CC, U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* khmer */
+@font-face {
+  font-family: 'Kantumruy';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Kantumruy-700-khmer3.woff2') format('woff2');
+  unicode-range: U+1780-17FF, U+200C, U+25CC, U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-cyrillic-ext4.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-cyrillic5.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-devanagari6.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-greek-ext7.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-greek8.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-vietnamese9.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-latin-ext10.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-100-latin11.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-cyrillic-ext12.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-cyrillic13.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-devanagari14.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-greek-ext15.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-greek16.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-vietnamese17.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-latin-ext18.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-200-latin19.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-cyrillic-ext20.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-cyrillic21.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-devanagari22.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-greek-ext23.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-greek24.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-vietnamese25.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-latin-ext26.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-300-latin27.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-cyrillic-ext28.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-cyrillic29.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-devanagari30.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-greek-ext31.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-greek32.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-vietnamese33.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-latin-ext34.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-400-latin35.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-cyrillic-ext36.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-cyrillic37.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-devanagari38.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-greek-ext39.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-greek40.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-vietnamese41.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-latin-ext42.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-500-latin43.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-cyrillic-ext44.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-cyrillic45.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-devanagari46.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-greek-ext47.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-greek48.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-vietnamese49.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-latin-ext50.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-600-latin51.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-cyrillic-ext52.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-cyrillic53.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-devanagari54.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-greek-ext55.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-greek56.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-vietnamese57.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-latin-ext58.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-700-latin59.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-cyrillic-ext60.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-cyrillic61.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-devanagari62.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-greek-ext63.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-greek64.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-vietnamese65.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-latin-ext66.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-800-latin67.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-cyrillic-ext68.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-cyrillic69.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-devanagari70.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-greek-ext71.woff2') format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-greek72.woff2') format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-vietnamese73.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-latin-ext74.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('~assets/fonts/Noto_Sans-900-latin75.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
