@@ -27,6 +27,11 @@ export const CourseColumn = [
     sortable: true,
   },
   {
+    label: "Purchases",
+    field: "purchases",
+    sortable: true,
+  },
+  {
     label: "Created",
     field: "createdDate",
   },
