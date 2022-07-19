@@ -8,6 +8,7 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
@@ -19,9 +20,19 @@ module.exports = {
       },
     },
   },
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          primary: "#1f2937",
+        },
+      },
+    ],
+  },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
-    require("tw-elements/dist/plugin"),
+    require("daisyui"),
   ],
 };

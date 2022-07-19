@@ -12,7 +12,7 @@ export default function ({ params, fields, join }) {
     if (params.columnFilters[key] !== "") {
       filter.push({
         field: key,
-        operator: key === "type" ? "$eq" : key === "status" ? "$eq" : "$cont",
+        operator: key === "type" ? "$eq" : key === "status" ? "$eq" : "$contL",
         value: params.columnFilters[key],
       });
     }

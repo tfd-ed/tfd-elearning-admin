@@ -74,7 +74,7 @@
         stroke-width="24"
       ></line>
     </svg>
-    <p class="capitalize">{{ text }}</p>
+    <p class="capitalize">{{ $t(text) }}</p>
   </div>
 </template>
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-800">
+  <nav class="bg-gray-800 sticky top-0 z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -11,35 +11,49 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 
               <nuxt-link
-                to="/dashboard"
+                :to="localePath('/dashboard')"
                 exact
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >Dashboard</nuxt-link
+                >{{ $t("dashboard") }}</nuxt-link
               >
 
               <nuxt-link
-                to="/course"
+                :to="localePath('/course')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 exact
-                >Course</nuxt-link
+                >{{ $t("course") }}</nuxt-link
               >
               <nuxt-link
-                to="/user"
+                :to="localePath('/user')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 exact
-                >Users</nuxt-link
+                >{{ $t("users") }}</nuxt-link
               >
               <nuxt-link
-                to="/purchase"
+                :to="localePath('/purchase')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 exact
-                >Purchases</nuxt-link
+                >{{ $t("purchases") }}</nuxt-link
               >
             </div>
           </div>
         </div>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
+            <nuxt-link
+              v-if="$i18n.locale === 'en'"
+              class="cursor-pointer -mt-2 hover:scale-110 mr-2"
+              :to="switchLocalePath('km')"
+            >
+              <CountryFlag country="kh" size="normal" />
+            </nuxt-link>
+            <nuxt-link
+              v-if="$i18n.locale === 'km'"
+              class="cursor-pointer -mt-2 hover:scale-110 mr-2"
+              :to="switchLocalePath('en')"
+            >
+              <CountryFlag country="gb" size="normal" />
+            </nuxt-link>
             <button
               type="button"
               class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
@@ -172,37 +186,43 @@
     <div id="mobile-menu" class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a
-          href="#"
-          class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base"
+        <nuxt-link
+          :to="localePath('/dashboard')"
+          exact
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           aria-current="page"
-          >Dashboard</a
+          >{{ $t("dashboard") }}</nuxt-link
         >
 
-        <a
-          href="#"
+        <nuxt-link
+          :to="localePath('/course')"
+          exact
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Team</a
+          >{{ $t("course") }}</nuxt-link
         >
 
-        <a
-          href="#"
+        <nuxt-link
+          exact
+          :to="localePath('/user')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Projects</a
+          >{{ $t("users") }}</nuxt-link
         >
 
-        <a
-          href="#"
+        <nuxt-link
+          exact
+          :to="localePath('/purchase')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Calendar</a
-        >
-
-        <a
-          href="#"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >Reports</a
+          >{{ $t("purchases") }}</nuxt-link
         >
       </div>
     </div>
   </nav>
 </template>
+<script>
+import CountryFlag from "vue-country-flag";
+export default {
+  components: {
+    CountryFlag,
+  },
+};
+</script>

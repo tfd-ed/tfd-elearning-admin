@@ -1,20 +1,11 @@
-export const CourseColumn = [
+export const PurchaseColumn = [
   {
     field: "id",
     hidden: true,
   },
   {
-    label: "Title",
-    field: "title",
-    sortable: true,
-    filterOptions: {
-      enabled: true, // enable filter for this column
-      trigger: "",
-    },
-  },
-  {
-    label: "Instructor",
-    field: "instructor",
+    label: "Transaction ID",
+    field: "transaction",
     sortable: true,
     filterOptions: {
       enabled: true, // enable filter for this column
@@ -27,13 +18,18 @@ export const CourseColumn = [
     sortable: true,
   },
   {
-    label: "Duration",
-    field: "duration",
+    label: "Course",
+    field: "course",
+    sortable: false,
+  },
+  {
+    label: "Status",
+    field: "status",
     sortable: true,
   },
   {
-    label: "Purchases",
-    field: "purchases",
+    label: "By User",
+    field: "byUser",
     sortable: false,
   },
   {

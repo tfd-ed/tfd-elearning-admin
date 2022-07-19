@@ -15,12 +15,7 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-    script: [
-      {
-        src: "https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js",
-        body: true,
-      },
-    ],
+    script: [],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -30,6 +25,12 @@ export default {
   plugins: [
     { src: "~/plugins/vuex-persist.js", mode: "client" },
     { src: "~/plugins/vue-good-table.js", mode: "client" },
+    { src: "~/plugins/vee-validate.js", mode: "client" },
+    { src: "~/plugins/vue-select.js", mode: "client" },
+    { src: "~/plugins/country-flag.js", mode: "client" },
+    { src: "~/plugins/i18n.js" },
+    { src: "~/plugins/axios.js" },
+    { src: "~/plugins/moment.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -55,15 +56,63 @@ export default {
     },
   },
 
+  /**
+   * Toast Config
+   */
+  toast: {
+    className: "rounded-lg text-base mx-auto mt-24 p-4 shadow-lg",
+    position: "top-center",
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next"],
+  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next", "nuxt-i18n", "@nuxtjs/toast"],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ["vee-validate/dist/rules"],
+  },
   //Moment
+
   moment: {
     timezone: true,
     defaultTimezone: "Asia/Phnom_Penh",
+    defaultLocale: "km",
+    locales: ["km"],
+  },
+  // i18n options
+  i18n: {
+    detectBrowserLanguage: false,
+    locales: [
+      {
+        code: "en",
+        iso: "en-US",
+        file: "en-US.js",
+        dir: "ltr",
+        moment: "en",
+      },
+      {
+        code: "km",
+        iso: "kh-KH",
+        file: "kh-KH.js",
+        dir: "ltr",
+        moment: "km",
+      },
+    ],
+    defaultLocale: "km",
+    fallbackLocale: "km",
+    // rootRedirect: "kh",
+    // strategy: "prefix",
+    noPrefixDefaultLocale: true,
+    lazy: true,
+    loadLanguagesAsync: true,
+    langDir: "locales/",
+    vueI18n: {
+      fallbackLocale: "km",
+      messages: {
+        "en-US": require("./locales/en-US"),
+        "kh-KH": require("./locales/kh-KH"),
+      },
+    },
   },
 
   // Nuxt Axios
@@ -71,15 +120,43 @@ export default {
     proxy: true,
     baseURL: process.env.BASE_URL || "http://localhost:80",
     // proxyHeaders: false,
-    credentials: true,
+    // credentials: true,
   },
   proxy: {
     "/v1/": {
       target: `${process.env.BASE_URL}/v1`,
       pathRewrite: { "^/v1/": "" },
     },
-    "/api/": {
-      target: `${process.env.WEB_URL}/api`,
+  },
+  // Nuxt Auth Plugin
+  auth: {
+    redirect: {
+      login: "/",
+      logout: "/",
+      callback: false,
+      home: false,
+    },
+    rewriteRedirects: false,
+    strategies: {
+      local: {
+        token: {
+          property: "accessToken",
+          required: true,
+          type: "bearer",
+        },
+        user: {
+          property: "false",
+          autoFetch: false,
+        },
+        endpoints: {
+          login: {
+            url: "v1/auth/admin-login",
+            method: "post",
+          },
+          logout: false,
+          user: { url: "v1/auth/me", method: "get" },
+        },
+      },
     },
   },
 };

@@ -9,7 +9,7 @@
 
       <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div class="px-4 py-8 sm:px-10">
-          <form class="space-y-6" action="#" method="POST">
+          <form class="space-y-6" method="POST" @submit.prevent="handleLogin">
             <div>
               <label
                 for="email"
@@ -20,6 +20,7 @@
               <div class="mt-1">
                 <input
                   id="email"
+                  v-model="login.email"
                   name="email"
                   type="email"
                   autocomplete="email"
@@ -39,6 +40,7 @@
               <div class="mt-1">
                 <input
                   id="password"
+                  v-model="login.password"
                   name="password"
                   type="password"
                   autocomplete="current-password"
@@ -91,8 +93,40 @@ import ShadowButton from "~/components/button/shadow-button";
 export default {
   name: "IndexPage",
   components: { ShadowButton },
+  data() {
+    return {
+      logging: false,
+      logged: false,
+      login: {
+        email: "",
+        password: "",
+      },
+    };
+  },
   methods: {
-    handleLogin() {},
+    async handleLogin() {
+      this.logging = true;
+      try {
+        let response = await this.$auth.loginWith("local", {
+          data: this.login,
+        });
+        this.$auth.setUser(response.data.user);
+        this.$router.push("/dashboard");
+        this.logging = false;
+        this.logged = true;
+        this.login = {
+          email: "",
+          password: "",
+        };
+      } catch (err) {
+        // this.$toast.global.error(); //Using custom toast
+        this.logging = false;
+
+        this.$toast.error(err.response.data.message, {
+          duration: 3000,
+        });
+      }
+    },
   },
 };
 </script>

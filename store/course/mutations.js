@@ -5,5 +5,8 @@ export default {
     state.courses = course;
     state.totalRecord = length;
   },
+  ADD_COURSES(state, course) {
+    state.courses = state.courses.unshift(course);
+  },
   updateField,
 };
