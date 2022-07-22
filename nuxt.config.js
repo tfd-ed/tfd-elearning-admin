@@ -28,9 +28,11 @@ export default {
     { src: "~/plugins/vee-validate.js", mode: "client" },
     { src: "~/plugins/vue-select.js", mode: "client" },
     { src: "~/plugins/country-flag.js", mode: "client" },
+    { src: "~/plugins/v-lazy-image.js", mode: "client" },
     { src: "~/plugins/i18n.js" },
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/moment.js" },
+    { src: "~/plugins/convertKhmer.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,6 +54,9 @@ export default {
       },
       "Noto Sans": {
         wght: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      },
+      "Ubuntu Mono": {
+        wght: [400],
       },
     },
   },

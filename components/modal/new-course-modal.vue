@@ -7,6 +7,13 @@
     :error="error"
   >
     <template #content>
+      <div>
+        <h2
+          class="mt-6 text-center text-xl md:text-3xl font-bold text-black capitalize leading-relaxed"
+        >
+          {{ $t("new_course") }}
+        </h2>
+      </div>
       <ValidationObserver
         ref="create_form"
         v-slot="{ handleSubmit }"

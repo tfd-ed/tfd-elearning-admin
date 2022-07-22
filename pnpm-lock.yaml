@@ -25,8 +25,10 @@ specifiers:
   nuxt: ^2.15.8
   nuxt-i18n: ^6.28.1
   tailwindcss: ^3.0.23
+  v-lazy-image: ^2.1.1
   vee-validate: '3'
   vue: ^2.6.14
+  vue-content-loader: '0.2'
   vue-country-flag: ^2.3.2
   vue-good-table: ^2.21.11
   vue-jest: ^3.0.4
@@ -49,8 +51,10 @@ dependencies:
   daisyui: 2.19.0
   nuxt: 2.15.8_t3b67aavto44pa6jycidxycqde
   nuxt-i18n: 6.28.1
+  v-lazy-image: 2.1.1
   vee-validate: 3.4.14_vue@2.7.5
   vue: 2.7.5
+  vue-content-loader: 0.2.3
   vue-country-flag: 2.3.2_vue@2.7.5
   vue-good-table: 2.21.11
   vue-select: 3.19.0_vue@2.7.5
@@ -3190,6 +3194,10 @@ packages:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
+
+  /babel-helper-vue-jsx-merge-props/2.0.3:
+    resolution: {integrity: sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==}
+    dev: false
 
   /babel-jest/27.5.1:
     resolution: {integrity: sha512-cdQ5dXjGRd0IBRATiQ4mZGlGlRE8kJpjPOixdNRdT+m3UcNqmYWN6rK6nvtXYfY3D76cb8s/O1Ss8ea24PIwcg==}
@@ -11424,6 +11432,10 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
+  /v-lazy-image/2.1.1:
+    resolution: {integrity: sha512-QC6Jcok99CRhhsO7svfI3hcBaT945dSuaHk3jr7WHm+QJMzbB/f32xKkdF45qL5ezd5KeoqHKh4gD92mQtjfXQ==}
+    dev: false
+
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
     dev: true
@@ -11458,6 +11470,12 @@ packages:
 
   /vue-client-only/2.1.0:
     resolution: {integrity: sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==}
+    dev: false
+
+  /vue-content-loader/0.2.3:
+    resolution: {integrity: sha512-gJlNEdXkuHGvgnyY0lBMsrSsOMk+TTog5uNAil5MSLv08f/mE7Apag0VavpxJ6ieb4P5J1iVKEIhHI41HQNq9Q==}
+    dependencies:
+      babel-helper-vue-jsx-merge-props: 2.0.3
     dev: false
 
   /vue-country-flag/2.3.2_vue@2.7.5:

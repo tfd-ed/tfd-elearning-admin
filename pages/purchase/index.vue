@@ -39,8 +39,34 @@
                 </div>
                 <div v-else-if="prop.column.field === 'price'">
                   <p class="font-semibold text-red-600">
-                    ${{ prop.row.price }}
+                    ${{
+                      $i18n.locale === "km"
+                        ? $convertKhmerNumber(prop.row.price)
+                        : prop.row.price
+                    }}
                   </p>
+                </div>
+                <div v-else-if="prop.column.field === 'status'">
+                  <span
+                    class="flex items-center justify-center w-full space-x-1.5 rounded-full border-2 px-3 py-1 text-xs font-medium text-gray-800"
+                    :class="
+                      prop.row.status === 'VERIFIED'
+                        ? 'border-green-500'
+                        : 'animate-pulse border-yellow-400'
+                    "
+                  >
+                    <span
+                      class="-ml-0.5 h-2 w-2 shrink-0 rounded-full"
+                      :class="
+                        prop.row.status === 'VERIFIED'
+                          ? 'bg-green-600 border-green-500'
+                          : 'bg-yellow-500 border-green-400'
+                      "
+                    ></span>
+                    <span class="capitalize">{{
+                      $t(prop.row.status.toString().toLowerCase())
+                    }}</span>
+                  </span>
                 </div>
                 <div v-else-if="prop.column.field === 'byUser'">
                   <nuxt-link :to="`/user/${prop.row.byUser.id}`">
@@ -71,10 +97,9 @@
 </template>
 <script>
 import { mapActions, mapMutations } from "vuex";
-import { createHelpers } from "vuex-map-fields";
-import { PurchaseColumn } from "static/table-columns/purchase";
 import ShadowButton from "@/components/button/shadow-button";
 import TableTemplate from "@/components/table/table-template";
+import { createHelpers } from "vuex-map-fields";
 const { mapFields } = createHelpers({
   getterType: "purchase/getField",
   mutationType: "purchase/updateField",
@@ -82,9 +107,49 @@ const { mapFields } = createHelpers({
 export default {
   components: { TableTemplate, ShadowButton },
   layout: "home",
+  middleware: "auth",
   data() {
     return {
-      columns: PurchaseColumn,
+      columns: [
+        {
+          field: "id",
+          hidden: true,
+        },
+        {
+          label: this.$i18n.t("transaction_number"),
+          field: "transaction",
+          sortable: true,
+          filterOptions: {
+            enabled: true, // enable filter for this column
+            trigger: "",
+          },
+        },
+        {
+          label: this.$i18n.t("price"),
+          field: "price",
+          sortable: true,
+        },
+        {
+          label: this.$i18n.t("course"),
+          field: "course",
+          sortable: false,
+        },
+        {
+          label: this.$i18n.t("status"),
+          field: "status",
+          sortable: true,
+        },
+        {
+          label: this.$i18n.t("by_user"),
+          field: "byUser",
+          sortable: false,
+        },
+        {
+          label: this.$i18n.t("created"),
+          field: "createdDate",
+          sortable: true,
+        },
+      ],
       selected: [],
     };
   },

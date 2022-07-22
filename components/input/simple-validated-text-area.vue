@@ -13,12 +13,15 @@
     >
       <textarea
         :id="id"
+        ref="textarea"
         :value="value"
         class="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
         :placeholder="getPlaceHolder"
         :autoComplete="autoComplete"
         @input="onInput"
         @change="onChange"
+        @focus="resize"
+        @keyup="resize"
       />
       <span
         v-if="label.includes('email')"
@@ -101,6 +104,13 @@ export default {
       // Supports .lazy
       // Can add validation here
       this.$emit("change", event.target.value);
+    },
+    mounted() {
+      this.resize();
+    },
+    resize() {
+      const { textarea } = this.$refs;
+      textarea.style.height = textarea.scrollHeight - 4 + "px";
     },
   },
 };

@@ -13,8 +13,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
-        serif: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
-        mono: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
+        serif: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.serif],
+        mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
         display: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
         body: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
       },

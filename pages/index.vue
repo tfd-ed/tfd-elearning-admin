@@ -92,6 +92,7 @@
 import ShadowButton from "~/components/button/shadow-button";
 export default {
   name: "IndexPage",
+  auth: "guest",
   components: { ShadowButton },
   data() {
     return {

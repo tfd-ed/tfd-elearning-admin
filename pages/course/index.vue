@@ -5,7 +5,7 @@
         <div class="flex flex-row justify-between">
           <h1 class="text-3xl font-bold text-gray-900">{{ $t("course") }}</h1>
           <label for="newCourseModal" class="m-1">
-            <ShadowButton text="New Course" color="bg-red-600" />
+            <ShadowButton text="new_course" color="bg-red-600" />
           </label>
         </div>
       </div>
@@ -33,12 +33,20 @@
               </div>
               <div v-else-if="prop.column.field === 'price'">
                 <p class="font-semibold text-red-600">
-                  ${{ convertKhmer(prop.row.price) }}
+                  ${{
+                    $i18n.locale === "km"
+                      ? $convertKhmerNumber(prop.row.price)
+                      : prop.row.price
+                  }}
                 </p>
               </div>
               <div v-else-if="prop.column.field === 'purchases'">
                 <p class="font-semibold text-blue-600">
-                  {{ convertKhmer(prop.row.purchases) }}
+                  {{
+                    $i18n.locale === "km"
+                      ? $convertKhmerNumber(prop.row.purchases)
+                      : prop.row.purchases
+                  }}
                 </p>
               </div>
               <span v-else>
@@ -58,7 +66,6 @@ import { mapActions } from "vuex";
 import ShadowButton from "~/components/button/shadow-button";
 import NewCourseModal from "~/components/modal/new-course-modal";
 import TableTemplate from "@/components/table/table-template";
-import convertKhmerNumber from "@/plugins/utils/convert-khmer-number";
 import { createHelpers } from "vuex-map-fields";
 const { mapFields } = createHelpers({
   getterType: "course/getField",
@@ -67,6 +74,7 @@ const { mapFields } = createHelpers({
 export default {
   components: { TableTemplate, NewCourseModal, ShadowButton },
   layout: "home",
+  middleware: "auth",
   data() {
     return {
       columns: [
@@ -119,9 +127,6 @@ export default {
     ...mapFields(["courses", "totalRecord"]),
   },
   methods: {
-    convertKhmer(num) {
-      return convertKhmerNumber(num);
-    },
     ...mapActions({
       fetchCourses: "course/fetchCourses",
     }),
