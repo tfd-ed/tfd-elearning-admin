@@ -76,6 +76,8 @@ const messages = {
   chapters: "Chapters",
   chapter_name: "Chapter Name",
   chapter_description: "Chapter Description",
+  updated: "updated",
+  new_chapter: "New Chapter",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

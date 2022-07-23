@@ -25,7 +25,7 @@
                 {{ $moment(prop.row.createdDate).format("YYYY-MM-DD") }}
               </div>
               <div v-else-if="prop.column.field === 'title'">
-                <nuxt-link :to="`/course/${prop.row.id}`">
+                <nuxt-link :to="localePath(`/course/${prop.row.id}`)">
                   <p class="font-semibold hover:underline">
                     {{ prop.row.title }}
                   </p>

@@ -2,9 +2,12 @@
   <div v-if="!$fetchState.pending">
     <div class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <HeadNavigator path="/course" label="course" />
+        <!--        <HeadNavigator-->
+        <!--          path="/course"-->
+        <!--          :label="getCourse($route.params.id).title"-->
+        <!--        />-->
         <h1 class="text-3xl mt-2 font-bold text-gray-900">
-          {{ title }}
+          {{ $t("course") }}/ {{ title }}
         </h1>
       </div>
     </div>
@@ -12,7 +15,7 @@
       <!-- Replace with your content -->
       <div class="px-4 py-6 sm:px-0">
         <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
-          <div class="lg:py-12 lg:col-span-2">
+          <div class="lg:col-span-2">
             <ImageLoader
               class="object-cover w-full h-56"
               :src="
@@ -156,12 +159,14 @@
               </div>
             </div>
           </div>
-          <div class="p-2 bg-white rounded-lg shadow-lg lg:p-10 lg:col-span-3">
+          <div
+            class="p-2 bg-white rounded-b-lg shadow-lg lg:p-10 lg:col-span-3 border-t-8 border-red-600"
+          >
             <ValidationObserver
               ref="course_edit_form"
               v-slot="{ handleSubmit }"
             >
-              <p class="font-semibold text-gray-700 py-6">
+              <p class="font-semibold text-lg text-gray-700 py-4">
                 {{ $t("general_info") }}
               </p>
               <form
@@ -217,28 +222,31 @@
                   rules="required"
                 />
 
-                <div class="mt-4">
+                <div class="mt-4 flex flex-row justify-center">
                   <button type="submit">
                     <ShadowButton color="bg-green-700" text="submit" />
                   </button>
                 </div>
               </form>
             </ValidationObserver>
-            <ValidationObserver
-              ref="add_and_update_chapter"
-              v-slot="{ handleSubmit }"
-            >
-              <p class="font-semibold text-gray-700 py-6">
-                {{ $t("chapters") }}
-              </p>
+            <p class="font-semibold text-lg text-gray-700 py-6 border-t mt-4">
+              {{ $t("chapters") }}
+            </p>
+            <div class="flex flex-col space-y-12">
               <ChapterEditCard
                 v-for="(chapter, index) in chapters"
                 :key="index"
                 :chapter="chapter"
                 :index="index"
-                @addCommand="addCommand"
               ></ChapterEditCard>
-            </ValidationObserver>
+            </div>
+
+            <button
+              class="mt-2 transition hover:scale-105 w-full h-12 bg-gray-100 text-black rounded-xl"
+              @click="addCommand"
+            >
+              {{ $t("new_chapter") }}
+            </button>
           </div>
         </div>
       </div>
@@ -344,14 +352,42 @@ export default {
     }),
   },
   methods: {
-    async editCourse() {},
-    async addCommand(index) {
-      this.chapters.splice(index + 1, 0, {
+    async editCourse() {
+      try {
+        const updated = await this.$axios.$patch(
+          `v1/course/${this.$route.params.id}`,
+          {
+            title: this.title,
+            description: this.description,
+            price: parseFloat(this.price),
+            instructor: this.instructor,
+            category: this.category,
+            paymentLink: this.paymentLink,
+          }
+        );
+        this.$toast.success(
+          this.$i18n.t("course") +
+            ": " +
+            this.title +
+            " " +
+            this.$i18n.t("updated"),
+          {
+            duration: 3000,
+          }
+        );
+      } catch (e) {
+        this.$toast.error(e.response.data.message, {
+          duration: 3000,
+        });
+      }
+    },
+    async addCommand() {
+      this.chapters.push({
         name: "",
-        id: "",
         description: "",
         duration: "",
         vimeoId: "",
+        chapterNumber: this.chapters.length + 1,
       });
     },
   },

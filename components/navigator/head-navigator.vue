@@ -13,8 +13,9 @@
       >
         <li class="flex items-center">
           <nuxt-link
+            exact
             class="flex items-center h-10 px-4 transition-colors bg-gray-100 hover:text-gray-900"
-            :to="localePath('/dashboard')"
+            :to="localePath(path)"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@
             </svg>
 
             <span class="ml-1.5 font-medium text-xs">
-              {{ $t("dashboard") }}
+              {{ $t(path) }}
             </span>
           </nuxt-link>
         </li>
@@ -41,12 +42,11 @@
           <span class="absolute inset-y-0 w-4 h-10 bg-gray-100 -left-px clip">
           </span>
 
-          <nuxt-link
+          <p
             class="flex items-center h-10 pl-8 pr-4 text-xs font-medium transition-colors bg-white hover:text-gray-900"
-            :to="localePath(path)"
           >
-            {{ $t(label) }}
-          </nuxt-link>
+            {{ label }}
+          </p>
         </li>
       </ol>
     </nav>

@@ -44,7 +44,7 @@
                 </div>
 
                 <div v-else-if="prop.column.field === 'username'">
-                  <nuxt-link :to="`/user/${prop.row.id}`">
+                  <nuxt-link :to="localePath(`/user/${prop.row.id}`)">
                     <p class="font-semibold hover:underline">
                       {{ prop.row.username }}
                     </p>

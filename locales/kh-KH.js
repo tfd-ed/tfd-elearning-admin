@@ -57,7 +57,7 @@ const messages = {
   title: "ឈ្មោះ",
   instructor: "គ្រូបង្រៀន",
   duration: "រយៈពេល",
-  created: "បង្កើតនៅថ្ងៃ",
+  created: "បង្កើត",
   next: "ទៅមុខ",
   prev: "ថយក្រោយ",
   row_per_page: "ជួរក្នុងមួយទំព័រ",
@@ -76,6 +76,8 @@ const messages = {
   chapters: "ជំពូក",
   chapter_name: "ឈ្មោះជំពូក",
   chapter_description: "ពិពណ៌នាជំពូក",
+  updated: "បានធ្វើបច្ចុប្បន្នភាព",
+  new_chapter: "បង្កើតមេរៀនថ្មី",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",
