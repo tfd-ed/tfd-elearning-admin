@@ -72,7 +72,7 @@
             rules="required"
           />
 
-          <div class="mt-4">
+          <div class="mt-4 flex flex-row justify-center">
             <button type="submit">
               <ShadowButton text="submit" color="bg-gray-700" />
             </button>

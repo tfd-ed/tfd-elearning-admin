@@ -77,7 +77,11 @@ const messages = {
   chapter_name: "ឈ្មោះជំពូក",
   chapter_description: "ពិពណ៌នាជំពូក",
   updated: "បានធ្វើបច្ចុប្បន្នភាព",
-  new_chapter: "បង្កើតមេរៀនថ្មី",
+  new_chapter: "បង្កើតជំពូកថ្មី",
+  approve: "អនុញ្ញត្តិ",
+  active: "កំពុងប្រើ",
+  no_result_found: "រកមិនឃើញលទ្ធផលទេ! តោះបង្កើតប្រភេទថ្មី",
+  start_typing: "ចាប់ផ្តើមវាយបញ្ចូលដើម្បីស្វែងរកប្រភេទ",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

@@ -26,12 +26,10 @@
             class="hover:underline cursor-pointer"
             @click="newCategory(search)"
           >
-            No results found! Let's create a new category: <b>{{ search }}</b>
+            {{ $t("no_result_found") }}: <b>{{ search }}</b>
           </div>
         </template>
-        <em v-else style="opacity: 0.5"
-          >Start typing to search for a category...</em
-        >
+        <em v-else style="opacity: 0.5">{{ $t("start_typing") }}...</em>
       </template>
       <template slot="option" slot-scope="option">
         <div class="d-center">

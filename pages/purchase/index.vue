@@ -83,7 +83,7 @@
             <template #selected-row-actions>
               <ShadowButton
                 class="m-1"
-                text="Approve"
+                text="approve"
                 color="bg-blue-600"
                 @onClick="onApproved"
               />
@@ -172,12 +172,15 @@ export default {
           const result = await this.$axios.$patch(`v1/purchase/${select.id}`, {
             status: "VERIFIED",
           });
-          this.$toast.success(select.transaction + ": Approved", {
-            duration: 3000,
-          });
+          this.$toast.success(
+            select.transaction + ": " + this.$i18n.t("approve"),
+            {
+              duration: 3000,
+            }
+          );
           this.verifyPurchase(select.id);
         } catch (e) {
-          this.$toast.error(err.response.data.message, {
+          this.$toast.error(e.response.data.message, {
             duration: 3000,
           });
         }

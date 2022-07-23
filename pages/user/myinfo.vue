@@ -3,7 +3,7 @@
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <h1 class="text-3xl mt-2 font-bold text-gray-900">
-          {{ $t("users") }}/{{ getUser($route.params.id).username }}
+          {{ $t("users") }}/{{ getAuth.username }}
         </h1>
       </div>
     </header>
@@ -28,14 +28,8 @@ export default {
   middleware: "auth",
   computed: {
     ...mapGetters({
-      getUser: "user/getUser",
       getAuth: "loggedInUser",
     }),
-  },
-  mounted() {
-    if (this.getAuth.id === this.$route.params.id) {
-      this.$router.push("/user/myinfo");
-    }
   },
 };
 </script>
