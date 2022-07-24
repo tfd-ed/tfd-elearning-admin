@@ -88,6 +88,8 @@ const messages = {
   system: "ប្រព័ន្ធ",
   copyright: "រក្សាសិទ្ធ",
   all_right_reserved: "រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+  drafted: "ព្រៀង",
+  published: "ចេញផ្សាយ",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

@@ -8,5 +8,11 @@ export default {
   ADD_COURSES(state, course) {
     state.courses = state.courses.unshift(course);
   },
+  PUBLISHED_COURSE(state, id) {
+    let courses = state.courses.find((item) => {
+      return item.id === id;
+    });
+    courses.status = "PUBLISHED";
+  },
   updateField,
 };

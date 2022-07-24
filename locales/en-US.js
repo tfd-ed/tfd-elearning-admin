@@ -88,6 +88,8 @@ const messages = {
   system: "System",
   copyright: "Copyright",
   all_right_reserved: "All rights reserved.",
+  drafted: "Drafted",
+  published: "Published",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",
