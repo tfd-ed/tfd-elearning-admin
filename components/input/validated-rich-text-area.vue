@@ -12,14 +12,12 @@
     >
       {{ $t(name) }}
     </p>
-    <client-only>
-      <VueEditor
-        v-model="description"
-        :editor-toolbar="customToolbar"
-        class="mt-1 border-gray-200 rounded-lg"
-        @text-change="onInput"
-      />
-    </client-only>
+    <VueEditor
+      v-model="description"
+      :editor-toolbar="customToolbar"
+      class="mt-1 border-gray-200 rounded-lg"
+      @text-change="onInput"
+    />
     <span class="text-xs font-medium text-red-500 mt-2"> {{ errors[0] }}</span>
     <slot name="guide"></slot>
   </ValidationProvider>

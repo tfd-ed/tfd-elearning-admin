@@ -12,7 +12,6 @@ export default {
         select: ["id", "name"],
       },
     ];
-    console.log(api().courses);
     let response = await this.$axios.$get(api().courses, {
       params: {},
       paramsSerializer: (param) => {

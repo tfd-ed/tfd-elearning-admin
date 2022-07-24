@@ -32,20 +32,20 @@
             rules="required"
             :auto-complete="false"
           />
-          <CategorySelect
+          <SimpleSelect
             id="course_category"
             v-model="category"
             name="course_category"
             label="course_category"
-            route="category"
+            route="categories"
             rules="required"
           />
 
-          <CategorySelect
+          <SimpleSelect
             id="course_instructor"
             v-model="instructor"
             name="course_instructor"
-            route="instructor"
+            route="instructors"
             label="instructor"
             rules="required"
           />
@@ -104,7 +104,6 @@
         </form>
       </ValidationObserver>
     </template>
-    <template #loaded> Your course is created! Let's add chapters </template>
   </ModalTemplate>
 </template>
 <script>
@@ -113,12 +112,11 @@ import ModalTemplate from "~/components/modal/modal-template";
 import ShadowButton from "@/components/button/shadow-button";
 import SimpleValidatedInput from "@/components/input/simple-validated-input";
 import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
-import CategorySelect from "@/components/input/category-select";
-import "vue-select/dist/vue-select.css";
+import SimpleSelect from "@/components/input/simple-select";
 import { mapMutations } from "vuex";
 import SimpleFileUpload from "@/components/input/simple-file-upload";
 import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
-
+import "vue-select/dist/vue-select.css";
 export default {
   components: {
     ValidatedRichTextArea,
@@ -128,7 +126,7 @@ export default {
     SimpleValidatedInput,
     ShadowButton,
     ModalTemplate,
-    CategorySelect,
+    SimpleSelect,
   },
   data() {
     return {
@@ -216,7 +214,7 @@ export default {
           },
         });
 
-        const course = await this.$axios.$post("/v1/course", {
+        const course = await this.$axios.$post(this.$api.courses, {
           title: this.title,
           description: this.description,
           shortDescription: this.shortDescription,
@@ -229,7 +227,7 @@ export default {
         this.loading = false;
         this.loaded = true;
         this.addCourse(course);
-        this.$router.push(this.localePath(`/course/${course.id}`));
+        await this.$router.push(this.localePath(`/course/${course.id}`));
       } catch (e) {
         this.loading = false;
         console.log(e.response.data);

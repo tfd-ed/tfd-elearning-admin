@@ -68,9 +68,7 @@
                     </svg>
                     <span>{{ $t("students") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{
-                    getCourse($route.params.id).purchases
-                  }}</span>
+                  <span class="font-mono text-gray-900">{{ purchases }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
@@ -104,9 +102,7 @@
                     <MoneyIcon class="text-green-600" />
                     <span>{{ $t("price") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{
-                    getCourse($route.params.id).price
-                  }}</span>
+                  <span class="font-mono text-gray-900">{{ priceLabel }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
@@ -125,10 +121,7 @@
                     <span>{{ $t("purchases") }}</span>
                   </div>
                   <span class="font-mono text-gray-900"
-                    >${{
-                      parseFloat(getCourse($route.params.id).purchases) *
-                      parseFloat(getCourse($route.params.id).price)
-                    }}</span
+                    >${{ parseFloat(purchases) * parseFloat(priceLabel) }}</span
                   >
                 </div>
                 <!--                <div class="flex items-center justify-between py-3 text-sm">-->
@@ -182,11 +175,21 @@
                   rules="required"
                 />
 
-                <CategorySelect
+                <SimpleSelect
                   id="course_category_edit"
                   v-model="category"
                   name="course_category"
                   label="course_category"
+                  route="categories"
+                  rules="required"
+                />
+
+                <SimpleSelect
+                  id="course_instructor_edit"
+                  v-model="instructor"
+                  name="course_instructor"
+                  label="instructor"
+                  route="instructors"
                   rules="required"
                 />
 
@@ -270,7 +273,7 @@
 <script>
 import { mapGetters } from "vuex";
 import SimpleValidatedInput from "@/components/input/simple-validated-input";
-import CategorySelect from "@/components/input/category-select";
+import SimpleSelect from "@/components/input/simple-select";
 import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
 import SimpleFileUpload from "@/components/input/simple-file-upload";
 import MoneyIcon from "@/components/icons/money-icon";
@@ -298,7 +301,7 @@ export default {
     MoneyIcon,
     SimpleFileUpload,
     SimpleValidatedTextArea,
-    CategorySelect,
+    SimpleSelect,
     SimpleValidatedInput,
   },
   layout: "home",
@@ -315,7 +318,9 @@ export default {
       category: "",
       paymentLink: "",
       thumbnail: "",
+      priceLabel: "",
       chapters: [],
+      purchases: 0,
     };
   },
   async fetch() {
@@ -323,6 +328,10 @@ export default {
       {
         field: "purchases",
         select: ["id"],
+      },
+      {
+        field: "instructor",
+        select: ["id", "name"],
       },
       {
         field: "thumbnail",
@@ -356,6 +365,8 @@ export default {
     this.paymentLink = course.paymentLink;
     this.thumbnail = course.thumbnail;
     this.chapters = course.chapters;
+    this.purchases = course.purchases.length;
+    this.priceLabel = course.price;
   },
   computed: {
     ...mapGetters({

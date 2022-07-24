@@ -53,6 +53,7 @@
 <script>
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import { ValidationProvider } from "vee-validate";
+
 export default {
   components: {
     ValidationProvider,
@@ -109,13 +110,12 @@ export default {
       });
       if (search.length) {
         loading(true);
-        const options = await this.$axios.$get(`v1/${this.route}`, {
+        this.options = await this.$axios.$get(`v1/${this.route}`, {
           params: {},
           paramsSerializer: (param) => {
             return qb.query();
           },
         });
-        this.options = options;
         loading(false);
       }
     },

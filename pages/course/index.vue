@@ -183,7 +183,7 @@ export default {
             }
           );
           this.publishCourse(select.id);
-          this.$toast.success(select.title + ": " + this.$i18n.t("approve"), {
+          this.$toast.success(select.title + ": " + this.$i18n.t("published"), {
             duration: 3000,
           });
         } catch (e) {

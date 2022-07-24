@@ -6,6 +6,7 @@ export default {
     state.totalRecord = length;
   },
   ADD_COURSES(state, course) {
+    course.purchases = 0;
     state.courses = state.courses.unshift(course);
   },
   PUBLISHED_COURSE(state, id) {
