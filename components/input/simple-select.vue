@@ -53,7 +53,7 @@
 <script>
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import { ValidationProvider } from "vee-validate";
-
+import "vue-select/dist/vue-select.css";
 export default {
   components: {
     ValidationProvider,

@@ -6,9 +6,25 @@
         <!--          path="/course"-->
         <!--          :label="getCourse($route.params.id).title"-->
         <!--        />-->
-        <h1 class="text-3xl mt-2 font-bold text-gray-900">
-          {{ $t("course") }}/ {{ title }}
-        </h1>
+        <div class="flex flex-row items-center justify-between">
+          <h1 class="text-3xl mt-2 font-bold text-gray-900">
+            {{ $t("course") }}/ {{ title }}
+          </h1>
+          <div>
+            <ShadowButton
+              v-if="status === 'DRAFTED'"
+              text="published"
+              color="bg-blue-700"
+              @onClick="makePublished"
+            />
+            <ShadowButton
+              v-else
+              text="drafted"
+              color="bg-yellow-500"
+              @onClick="makeDrafted"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -320,6 +336,7 @@ export default {
       thumbnail: "",
       priceLabel: "",
       chapters: [],
+      status: "",
       purchases: 0,
     };
   },
@@ -367,6 +384,7 @@ export default {
     this.chapters = course.chapters;
     this.purchases = course.purchases.length;
     this.priceLabel = course.price;
+    this.status = course.status;
   },
   computed: {
     ...mapGetters({
@@ -374,6 +392,18 @@ export default {
     }),
   },
   methods: {
+    popCourseUpdated() {
+      this.$toast.success(
+        this.$i18n.t("course") +
+          ": " +
+          this.title +
+          " " +
+          this.$i18n.t("updated"),
+        {
+          duration: 3000,
+        }
+      );
+    },
     async editCourse() {
       try {
         const updated = await this.$axios.$patch(
@@ -388,16 +418,7 @@ export default {
             paymentLink: this.paymentLink,
           }
         );
-        this.$toast.success(
-          this.$i18n.t("course") +
-            ": " +
-            this.title +
-            " " +
-            this.$i18n.t("updated"),
-          {
-            duration: 3000,
-          }
-        );
+        this.popCourseUpdated();
       } catch (e) {
         this.$toast.error(e.response.data.message, {
           duration: 3000,
@@ -413,6 +434,38 @@ export default {
         vimeoId: "",
         chapterNumber: this.chapters.length + 1,
       });
+    },
+    async makeDrafted() {
+      try {
+        const updated = await this.$axios.$patch(
+          `${this.$api.courses}/${this.$route.params.id}`,
+          {
+            status: "DRAFTED",
+          }
+        );
+        this.popCourseUpdated();
+        this.status = "DRAFTED";
+      } catch (e) {
+        this.$toast.error(e.response.data.message, {
+          duration: 3000,
+        });
+      }
+    },
+    async makePublished() {
+      try {
+        const updated = await this.$axios.$patch(
+          `${this.$api.courses}/${this.$route.params.id}`,
+          {
+            status: "PUBLISHED",
+          }
+        );
+        this.popCourseUpdated();
+        this.status = "PUBLISHED";
+      } catch (e) {
+        this.$toast.error(e.response.data.message, {
+          duration: 3000,
+        });
+      }
     },
   },
 };

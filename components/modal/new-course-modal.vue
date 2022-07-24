@@ -116,7 +116,6 @@ import SimpleSelect from "@/components/input/simple-select";
 import { mapMutations } from "vuex";
 import SimpleFileUpload from "@/components/input/simple-file-upload";
 import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
-import "vue-select/dist/vue-select.css";
 export default {
   components: {
     ValidatedRichTextArea,
