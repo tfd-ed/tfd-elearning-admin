@@ -6,11 +6,11 @@
           <h1 class="text-3xl font-bold text-gray-900">
             {{ $t("purchases") }}
           </h1>
-          <div class="order-last">
-            <label for="newPurchaseModal" class="m-1">
-              <ShadowButton text="New Purchase" color="bg-red-600" />
-            </label>
-          </div>
+          <!--          <div class="order-last">-->
+          <!--            <label for="newPurchaseModal" class="m-1">-->
+          <!--              <ShadowButton text="New Purchase" color="bg-red-600" />-->
+          <!--            </label>-->
+          <!--          </div>-->
         </div>
       </div>
     </header>

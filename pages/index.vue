@@ -3,7 +3,7 @@
     <div class="flex flex-col justify-center min- py-12 sm:px-6 lg:px-8">
       <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 class="mt-6 text-3xl font-extrabold text-center text-neutral-600">
-          Sign in to your account
+          TFD E-Elearning Admin
         </h2>
       </div>
 
@@ -15,7 +15,7 @@
                 for="email"
                 class="block text-sm font-medium text-gray-700"
               >
-                Email address
+                Email
               </label>
               <div class="mt-1">
                 <input
@@ -47,32 +47,6 @@
                   required=""
                   class="block w-full px-5 py-3 text-base text-neutral-600 placeholder-gray-300 transition duration-500 ease-in-out transform border border-transparent rounded-lg bg-gray-50 focus:outline-none focus:border-transparent focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-300"
                 />
-              </div>
-            </div>
-
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <label
-                  for="remember-me"
-                  class="block ml-2 text-sm text-neutral-600"
-                >
-                  Remember me
-                </label>
-              </div>
-
-              <div class="text-sm">
-                <nuxt-link
-                  to="/dashboard"
-                  class="font-medium text-blue-600 hover:text-blue-500"
-                >
-                  Forgot your password?
-                </nuxt-link>
               </div>
             </div>
 
@@ -112,7 +86,7 @@ export default {
           data: this.login,
         });
         this.$auth.setUser(response.data.user);
-        this.$router.push("/dashboard");
+        this.$router.push(this.localePath("/dashboard"));
         this.logging = false;
         this.logged = true;
         this.login = {

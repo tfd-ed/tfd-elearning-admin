@@ -1,5 +1,5 @@
 import paramsConverter from "../../plugins/utils/paramsConverter";
-import { RequestQueryBuilder } from "@nestjsx/crud-request";
+import api from "@/plugins/utils/api";
 export default {
   async fetchCourses({ dispatch, commit, getters, rootGetters }, { params }) {
     const join = [
@@ -7,8 +7,13 @@ export default {
         field: "purchases",
         select: ["id"],
       },
+      {
+        field: "instructor",
+        select: ["id", "name"],
+      },
     ];
-    let response = await this.$axios.$get(`/v1/course`, {
+    console.log(api().courses);
+    let response = await this.$axios.$get(api().courses, {
       params: {},
       paramsSerializer: (param) => {
         return paramsConverter({ params: params, join: join }).convertedParams;

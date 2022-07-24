@@ -37,16 +37,40 @@
             v-model="category"
             name="course_category"
             label="course_category"
+            route="category"
+            rules="required"
+          />
+
+          <CategorySelect
+            id="course_instructor"
+            v-model="instructor"
+            name="course_instructor"
+            route="instructor"
+            label="instructor"
             rules="required"
           />
 
           <SimpleValidatedTextArea
+            id="short_course_description"
+            v-model="shortDescription"
+            name="short_course_description"
+            label="short_course_description"
+            rules="required"
+          />
+          <ValidatedRichTextArea
             id="course_description"
             v-model="description"
             name="course_description"
             label="course_description"
             rules="required"
           />
+          <!--          <client-only>-->
+          <!--            <VueEditor-->
+          <!--              v-model="description"-->
+          <!--              :editor-toolbar="customToolbar"-->
+          <!--              class="mt-1 border-gray-200 rounded-lg"-->
+          <!--            />-->
+          <!--          </client-only>-->
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <SimpleValidatedInput
               id="course_price"
@@ -93,8 +117,11 @@ import CategorySelect from "@/components/input/category-select";
 import "vue-select/dist/vue-select.css";
 import { mapMutations } from "vuex";
 import SimpleFileUpload from "@/components/input/simple-file-upload";
+import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
+
 export default {
   components: {
+    ValidatedRichTextArea,
     SimpleFileUpload,
     SimpleValidatedTextArea,
     ValidationObserver,
@@ -110,12 +137,65 @@ export default {
       error: false,
       title: "",
       description: "",
+      shortDescription: "",
       price: "",
-      instructor: "Smith.",
       category: "",
+      instructor: "",
       paymentLink: "",
       thumbnail: "",
       chapters: [],
+      customToolbar: [
+        [
+          {
+            header: [false, 1, 2, 3, 4, 5, 6],
+          },
+        ],
+        ["bold", "italic", "underline", "strike"], // toggled buttons
+        [
+          {
+            align: "",
+          },
+          {
+            align: "center",
+          },
+          {
+            align: "right",
+          },
+          {
+            align: "justify",
+          },
+        ],
+        ["blockquote", "code-block"],
+        [
+          {
+            list: "ordered",
+          },
+          {
+            list: "bullet",
+          },
+          {
+            list: "check",
+          },
+        ],
+        [
+          {
+            indent: "-1",
+          },
+          {
+            indent: "+1",
+          },
+        ], // outdent/indent
+        [
+          {
+            color: [],
+          },
+          {
+            background: [],
+          },
+        ], // dropdown with defaults from theme
+        ["link"],
+        ["clean"], // remove formatting button
+      ],
     };
   },
   methods: {
@@ -139,16 +219,17 @@ export default {
         const course = await this.$axios.$post("/v1/course", {
           title: this.title,
           description: this.description,
-          instructor: this.instructor,
+          shortDescription: this.shortDescription,
           price: parseFloat(this.price),
           category: this.category.id,
+          instructor: this.instructor.id,
           paymentLink: this.paymentLink,
           thumbnail: file.id,
         });
-        console.log(course);
         this.loading = false;
         this.loaded = true;
         this.addCourse(course);
+        this.$router.push(this.localePath(`/course/${course.id}`));
       } catch (e) {
         this.loading = false;
         console.log(e.response.data);

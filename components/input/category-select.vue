@@ -10,7 +10,7 @@
       class="text-gray-600 mb-2 text-xs"
       :class="errors.length ? 'text-red-500' : 'text-gray-600'"
     >
-      {{ $t(name) }}
+      {{ $t(label) }}
     </p>
     <v-select
       :value="value"
@@ -26,10 +26,12 @@
             class="hover:underline cursor-pointer"
             @click="newCategory(search)"
           >
-            {{ $t("no_result_found") }}: <b>{{ search }}</b>
+            {{ $t("no_result_found") }} {{ $t(label) }}: <b>{{ search }}</b>
           </div>
         </template>
-        <em v-else style="opacity: 0.5">{{ $t("start_typing") }}...</em>
+        <em v-else style="opacity: 0.5"
+          >{{ $t("start_typing") }} {{ $t(label) }}:...</em
+        >
       </template>
       <template slot="option" slot-scope="option">
         <div class="d-center">
@@ -76,6 +78,10 @@ export default {
       type: String,
       default: "",
     },
+    route: {
+      type: String,
+      default: "",
+    },
 
     autoComplete: {
       type: Boolean,
@@ -103,7 +109,7 @@ export default {
       });
       if (search.length) {
         loading(true);
-        const options = await this.$axios.$get(`v1/category`, {
+        const options = await this.$axios.$get(`v1/${this.route}`, {
           params: {},
           paramsSerializer: (param) => {
             return qb.query();
@@ -125,9 +131,8 @@ export default {
       }
     },
     async newCategory(name) {
-      const category = await this.$axios.$post("v1/category", {
+      const category = await this.$axios.$post(`v1/${this.route}`, {
         name: name,
-        description: "Sample description",
       });
       this.options.push(category);
       this.onInput(category);

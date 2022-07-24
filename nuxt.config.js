@@ -2,6 +2,8 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
 
+  mode: "spa",
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "TFD E-Learning Admin",
@@ -32,7 +34,7 @@ export default {
     { src: "~/plugins/i18n.js" },
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/moment.js" },
-    { src: "~/plugins/convertKhmer.js" },
+    { src: "~/plugins/injector.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -70,7 +72,13 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ["@nuxtjs/axios", "@nuxtjs/auth-next", "nuxt-i18n", "@nuxtjs/toast"],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/auth-next",
+    "nuxt-i18n",
+    "@nuxtjs/toast",
+    "vue2-editor/nuxt",
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

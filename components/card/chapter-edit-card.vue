@@ -178,7 +178,7 @@ export default {
          */
         try {
           const update = await this.$axios.$patch(
-            `v1/chapter/${this.chapter.id}`,
+            `${this.$api.chapters}/${this.chapter.id}`,
             {
               name: this.name,
               description: this.description,
@@ -203,7 +203,7 @@ export default {
         }
       } else {
         try {
-          const newChapter = await this.$axios.$post("/v1/chapter", {
+          const newChapter = await this.$axios.$post(this.$api.chapters, {
             name: this.name,
             description: this.description,
             vimeoId: this.vimeoId,

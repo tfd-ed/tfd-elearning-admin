@@ -81,24 +81,24 @@
                     chapters.length
                   }}</span>
                 </div>
-                <div class="flex items-center justify-between py-3 text-sm">
-                  <div class="flex items-center space-x-2 text-gray-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      class="flex-none w-5 h-5"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <span>{{ $t("comments") }}</span>
-                  </div>
-                  <span class="font-mono text-gray-900">32,422</span>
-                </div>
+                <!--                <div class="flex items-center justify-between py-3 text-sm">-->
+                <!--                  <div class="flex items-center space-x-2 text-gray-700">-->
+                <!--                    <svg-->
+                <!--                      xmlns="http://www.w3.org/2000/svg"-->
+                <!--                      viewBox="0 0 20 20"-->
+                <!--                      fill="currentColor"-->
+                <!--                      class="flex-none w-5 h-5"-->
+                <!--                    >-->
+                <!--                      <path-->
+                <!--                        fill-rule="evenodd"-->
+                <!--                        d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z"-->
+                <!--                        clip-rule="evenodd"-->
+                <!--                      />-->
+                <!--                    </svg>-->
+                <!--                    <span>{{ $t("comments") }}</span>-->
+                <!--                  </div>-->
+                <!--                  <span class="font-mono text-gray-900">32,422</span>-->
+                <!--                </div>-->
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
                     <MoneyIcon class="text-green-600" />
@@ -131,31 +131,31 @@
                     }}</span
                   >
                 </div>
-                <div class="flex items-center justify-between py-3 text-sm">
-                  <div class="flex items-center space-x-2 text-gray-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      class="flex-none w-5 h-5"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    <span>{{ $t("completed") }}</span>
-                  </div>
-                  <span>12</span>
-                </div>
-                <div class="flex items-center justify-between py-3 text-sm">
-                  <div class="flex items-center space-x-2 text-gray-700">
-                    <ThunderIcon />
-                    <span>{{ $t("learning") }}</span>
-                  </div>
-                  <span>32</span>
-                </div>
+                <!--                <div class="flex items-center justify-between py-3 text-sm">-->
+                <!--                  <div class="flex items-center space-x-2 text-gray-700">-->
+                <!--                    <svg-->
+                <!--                      xmlns="http://www.w3.org/2000/svg"-->
+                <!--                      viewBox="0 0 20 20"-->
+                <!--                      fill="currentColor"-->
+                <!--                      class="flex-none w-5 h-5"-->
+                <!--                    >-->
+                <!--                      <path-->
+                <!--                        fill-rule="evenodd"-->
+                <!--                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"-->
+                <!--                        clip-rule="evenodd"-->
+                <!--                      />-->
+                <!--                    </svg>-->
+                <!--                    <span>{{ $t("completed") }}</span>-->
+                <!--                  </div>-->
+                <!--                  <span>12</span>-->
+                <!--                </div>-->
+                <!--                <div class="flex items-center justify-between py-3 text-sm">-->
+                <!--                  <div class="flex items-center space-x-2 text-gray-700">-->
+                <!--                    <ThunderIcon />-->
+                <!--                    <span>{{ $t("learning") }}</span>-->
+                <!--                  </div>-->
+                <!--                  <span>32</span>-->
+                <!--                </div>-->
               </div>
             </div>
           </div>
@@ -191,6 +191,13 @@
                 />
 
                 <SimpleValidatedTextArea
+                  id="short_course_description_edit"
+                  v-model="shortDescription"
+                  name="short_course_description_edit"
+                  label="short_course_description"
+                  rules="required"
+                />
+                <ValidatedRichTextArea
                   id="course_description_edit"
                   v-model="description"
                   name="course_description"
@@ -276,8 +283,10 @@ import { RequestQueryBuilder } from "@nestjsx/crud-request";
 import GeneralContentLoading from "@/components/loading/general-content-loading";
 import ChapterIcon from "@/components/icons/chapter-icon";
 import ChapterEditCard from "@/components/card/chapter-edit-card";
+import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
 export default {
   components: {
+    ValidatedRichTextArea,
     ChapterEditCard,
     ChapterIcon,
     GeneralContentLoading,
@@ -299,6 +308,7 @@ export default {
       loaded: false,
       error: false,
       title: "",
+      shortDescription: "",
       description: "",
       price: "",
       instructor: "",
@@ -327,7 +337,7 @@ export default {
       },
     ];
     const course = await this.$axios.$get(
-      `/v1/course/${this.$route.params.id}`,
+      `${this.$api.courses}/${this.$route.params.id}`,
       {
         params: {},
         paramsSerializer: (param) => {
@@ -339,6 +349,7 @@ export default {
     );
     this.title = course.title;
     this.description = course.description;
+    this.shortDescription = course.shortDescription;
     this.price = course.price;
     this.instructor = course.instructor;
     this.category = course.category;
@@ -355,9 +366,10 @@ export default {
     async editCourse() {
       try {
         const updated = await this.$axios.$patch(
-          `v1/course/${this.$route.params.id}`,
+          `${this.$api.courses}/${this.$route.params.id}`,
           {
             title: this.title,
+            shortDescription: this.shortDescription,
             description: this.description,
             price: parseFloat(this.price),
             instructor: this.instructor,
@@ -384,6 +396,7 @@ export default {
     async addCommand() {
       this.chapters.push({
         name: "",
+        shortDescription: "",
         description: "",
         duration: "",
         vimeoId: "",

@@ -8,15 +8,12 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-
               <nuxt-link
                 :to="localePath('/dashboard')"
                 exact
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >{{ $t("dashboard") }}</nuxt-link
               >
-
               <nuxt-link
                 :to="localePath('/course')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -28,6 +25,12 @@
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 exact
                 >{{ $t("users") }}</nuxt-link
+              >
+              <nuxt-link
+                :to="localePath('/instructor')"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                exact
+                >{{ $t("instructor") }}</nuxt-link
               >
               <nuxt-link
                 :to="localePath('/purchase')"
@@ -42,14 +45,14 @@
           <div class="ml-4 flex items-center md:ml-6">
             <nuxt-link
               v-if="$i18n.locale === 'en'"
-              class="cursor-pointer -mt-2 hover:scale-110 mr-2"
+              class="cursor-pointer -mt-2 hover:scale-110 mr-4"
               :to="switchLocalePath('km')"
             >
               <CountryFlag country="kh" size="normal" />
             </nuxt-link>
             <nuxt-link
               v-if="$i18n.locale === 'km'"
-              class="cursor-pointer -mt-2 hover:scale-110 mr-2"
+              class="cursor-pointer -mt-2 hover:scale-110 mr-4"
               :to="switchLocalePath('en')"
             >
               <CountryFlag country="gb" size="normal" />
@@ -76,51 +79,97 @@
                 />
               </svg>
             </button>
-
             <!-- Profile dropdown -->
             <div class="ml-3 relative">
               <div class="flex justify-center">
                 <div>
-                  <div class="dropdown relative">
-                    <button
-                      id="dropdownMenuButton1"
-                      class="dropdown-toggle max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                  <div class="dropdown dropdown-hover relative">
+                    <label
+                      tabindex="0"
+                      class="btn btn-circle bg-transparent border-transparent m-1"
                     >
-                      <span class="sr-only">Open user menu</span>
-                      <img
-                        class="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
-                    </button>
+                      <button
+                        id="dropdownMenuButton1"
+                        class="dropdown-toggle max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <span class="sr-only">Open user menu</span>
+                        <img
+                          class="h-8 w-8 rounded-full"
+                          :src="
+                            getLogged.profile
+                              ? getLogged.profile.path
+                              : 'https://avatars.dicebear.com/api/micah/' +
+                                getLogged.username +
+                                '.svg?background=%23FFFFFF'
+                          "
+                          alt=""
+                        /></button
+                    ></label>
+
                     <ul
-                      class="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-                      aria-labelledby="dropdownMenuButton1"
+                      tabindex="0"
+                      class="dropdown-content menu z-10 w-56 bg-white border border-gray-100 rounded-md shadow-lg"
                     >
-                      <li>
-                        <a
-                          class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                          href="#"
-                          >Action</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                          href="#"
-                          >Another action</a
-                        >
-                      </li>
-                      <li>
-                        <a
-                          class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                          href="#"
-                          >Something else here</a
-                        >
-                      </li>
+                      <div class="flow-root py-2">
+                        <div class="-my-2 divide-y divide-gray-100">
+                          <div class="p-2">
+                            <strong
+                              class="block p-2 text-xs font-medium text-gray-400"
+                            >
+                              {{ getLogged.email }}
+                            </strong>
+
+                            <nuxt-link
+                              :to="localePath('/user/myinfo')"
+                              class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                              role="menuitem"
+                            >
+                              {{ $t("profile") }}
+                            </nuxt-link>
+
+                            <nuxt-link
+                              :to="localePath('/setting')"
+                              class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                              role="menuitem"
+                            >
+                              {{ $t("setting") }}
+                            </nuxt-link>
+                          </div>
+
+                          <div class="p-2">
+                            <strong
+                              class="block p-2 text-xs font-medium text-gray-400"
+                            >
+                              {{ $t("system") }}
+                            </strong>
+
+                            <button
+                              class="flex items-center w-full gap-2 px-4 py-2 text-sm text-red-700 rounded-lg hover:bg-red-50"
+                              @click="logout"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 36 36"
+                                class="fill-current"
+                              >
+                                <title>ic_arrow_back_36px</title>
+                                <g>
+                                  <path
+                                    d="M30 16.5H11.74l8.38-8.38L18 6 6 18l12 12 2.12-2.12-8.38-8.38H30v-3z"
+                                  ></path>
+                                </g>
+                              </svg>
+
+                              {{ $t("logout") }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </ul>
                   </div>
                 </div>
@@ -193,21 +242,24 @@
           aria-current="page"
           >{{ $t("dashboard") }}</nuxt-link
         >
-
         <nuxt-link
           :to="localePath('/course')"
           exact
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("course") }}</nuxt-link
         >
-
         <nuxt-link
           exact
           :to="localePath('/user')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("users") }}</nuxt-link
         >
-
+        <nuxt-link
+          exact
+          :to="localePath('/instructor')"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >{{ $t("instructor") }}</nuxt-link
+        >
         <nuxt-link
           exact
           :to="localePath('/purchase')"
@@ -220,9 +272,21 @@
 </template>
 <script>
 import CountryFlag from "vue-country-flag";
+import { mapGetters } from "vuex";
 export default {
   components: {
     CountryFlag,
+  },
+  computed: {
+    ...mapGetters({
+      getLogged: "loggedInUser",
+    }),
+  },
+  methods: {
+    async logout() {
+      window.localStorage.clear();
+      await this.$auth.logout();
+    },
   },
 };
 </script>

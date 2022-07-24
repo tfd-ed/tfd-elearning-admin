@@ -31,6 +31,15 @@
                   </p>
                 </nuxt-link>
               </div>
+              <div v-else-if="prop.column.field === 'instructor'">
+                <nuxt-link
+                  :to="localePath(`/instructor/${prop.row.instructor.id}`)"
+                >
+                  <p class="font-semibold hover:underline">
+                    {{ prop.row.instructor.name }}
+                  </p>
+                </nuxt-link>
+              </div>
               <div v-else-if="prop.column.field === 'price'">
                 <p class="font-semibold text-red-600">
                   ${{
@@ -94,11 +103,7 @@ export default {
         {
           label: this.$i18n.t("instructor"),
           field: "instructor",
-          sortable: true,
-          filterOptions: {
-            enabled: true, // enable filter for this column
-            trigger: "",
-          },
+          sortable: false,
         },
         {
           label: this.$i18n.t("price"),
