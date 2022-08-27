@@ -491,7 +491,7 @@ export default {
           }
         );
         this.popCourseUpdated();
-        this.status = "DRAFTED";
+        this.course.status = "DRAFTED";
       } catch (e) {
         this.$toast.error(e.response.data.message, {
           duration: 3000,
@@ -507,7 +507,7 @@ export default {
           }
         );
         this.popCourseUpdated();
-        this.status = "PUBLISHED";
+        this.course.status = "PUBLISHED";
       } catch (e) {
         this.$toast.error(e.response.data.message, {
           duration: 3000,

@@ -14,6 +14,7 @@
             :rows="users"
             :total-record="totalRecord"
             @loaded="fetchUsers"
+            @onSelectedRowChanged="onSelected"
           >
             <template #default="props">
               <div v-for="(prop, index) in props" :key="index">
@@ -55,6 +56,20 @@
                 </span>
               </div>
             </template>
+            <template #selected-row-actions>
+              <ShadowButton
+                class="m-1"
+                text="ban"
+                color="bg-red-500"
+                @onClick="onBan"
+              />
+              <ShadowButton
+                class="m-1"
+                text="activate"
+                color="bg-green-500"
+                @onClick="onActivate"
+              />
+            </template>
           </TableTemplate>
         </div>
         <!-- /End replace -->
@@ -65,13 +80,14 @@
 <script>
 import TableTemplate from "@/components/table/table-template";
 import { createHelpers } from "vuex-map-fields";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
+import ShadowButton from "~/components/button/shadow-button";
 const { mapFields } = createHelpers({
   getterType: "user/getField",
   mutationType: "user/updateField",
 });
 export default {
-  components: { TableTemplate },
+  components: { ShadowButton, TableTemplate },
   layout: "home",
   middleware: "auth",
   data() {
@@ -115,6 +131,7 @@ export default {
           sortable: true,
         },
       ],
+      selected: [],
     };
   },
   computed: {
@@ -124,6 +141,53 @@ export default {
     ...mapActions({
       fetchUsers: "user/fetchUsers",
     }),
+    ...mapMutations({
+      banUser: "user/BAN_USER",
+      activateUser: "user/ACTIVATE_USER",
+    }),
+    onSelected(param) {
+      this.selected = param.selectedRows;
+    },
+    async onBan() {
+      for (const select of this.selected) {
+        try {
+          const result = await this.$axios.$patch(
+            `${this.$api.users}/${select.id}`,
+            {
+              status: "BANNED",
+            }
+          );
+          this.banUser(select.id);
+          this.$toast.success(select.title + ": " + this.$i18n.t("banned"), {
+            duration: 3000,
+          });
+        } catch (e) {
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+    },
+    async onActivate() {
+      for (const select of this.selected) {
+        try {
+          const result = await this.$axios.$patch(
+            `${this.$api.users}/${select.id}`,
+            {
+              status: "ACTIVE",
+            }
+          );
+          this.activateUser(select.id);
+          this.$toast.success(select.title + ": " + this.$i18n.t("activated"), {
+            duration: 3000,
+          });
+        } catch (e) {
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+    },
   },
 };
 </script>

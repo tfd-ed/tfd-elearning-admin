@@ -94,6 +94,9 @@ const messages = {
   published: "Published",
   make_published: "Make Published",
   make_drafted: "Make Drafted",
+  ban: "Ban",
+  activate: "Activate",
+  banned: "Banned",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

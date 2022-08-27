@@ -2,9 +2,20 @@
   <div v-if="!$fetchState.pending">
     <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl mt-2 font-bold text-gray-900">
-          {{ $t("users") }} / {{ getUser($route.params.id).username }}
-        </h1>
+        <div class="flex flex-row items-center justify-between">
+          <h1 class="text-3xl mt-2 font-bold text-gray-900">
+            {{ $t("users") }} / {{ getUser($route.params.id).username }}
+          </h1>
+          <div>
+            <ShadowButton
+              v-if="user.status === 'BANNED'"
+              text="activate"
+              color="bg-blue-700"
+              @onClick="Activate"
+            />
+            <ShadowButton v-else text="ban" color="bg-red-500" @onClick="Ban" />
+          </div>
+        </div>
       </div>
     </header>
     <div>
@@ -38,7 +49,7 @@
                       :class="
                         user.status === 'ACTIVE'
                           ? 'border-green-500'
-                          : 'animate-pulse border-yellow-400'
+                          : 'animate-pulse border-red-500'
                       "
                     >
                       <span
@@ -46,7 +57,7 @@
                         :class="
                           user.status === 'ACTIVE'
                             ? 'bg-green-600 border-green-500'
-                            : 'bg-yellow-500 border-green-400'
+                            : 'bg-red-500 border-green-400'
                         "
                       ></span>
                       <span class="capitalize">{{
@@ -362,6 +373,38 @@ export default {
         }, 3000);
       } catch (e) {
         console.log(e);
+        this.$toast.error(e.response.data.message, {
+          duration: 3000,
+        });
+      }
+    },
+    async Ban() {
+      try {
+        await this.$axios.$patch(
+          `${this.$api.users}/${this.$route.params.id}`,
+          {
+            status: "BANNED",
+          }
+        );
+        this.popCourseUpdated();
+        this.user.status = "BANNED";
+      } catch (e) {
+        this.$toast.error(e.response.data.message, {
+          duration: 3000,
+        });
+      }
+    },
+    async Activate() {
+      try {
+        await this.$axios.$patch(
+          `${this.$api.users}/${this.$route.params.id}`,
+          {
+            status: "ACTIVE",
+          }
+        );
+        this.popCourseUpdated();
+        this.user.status = "ACTIVE";
+      } catch (e) {
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });

@@ -94,6 +94,9 @@ const messages = {
   published: "ចេញផ្សាយ",
   make_published: "ដាក់ចេញផ្សាយ",
   make_drafted: "ដាក់ជាព្រៀង",
+  ban: "ហាមឃាត់",
+  activate: "ដាក់ឲ្យប្រើ",
+  banned: "ត្រូវបានហាមឃាត់",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

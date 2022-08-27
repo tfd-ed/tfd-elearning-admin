@@ -8,5 +8,17 @@ export default {
   ADD_USER(state, user) {
     state.users = state.users.unshift(user);
   },
+  BAN_USER(state, id) {
+    let user = state.users.find((item) => {
+      return item.id === id;
+    });
+    user.status = "BANNED";
+  },
+  ACTIVATE_USER(state, id) {
+    let user = state.users.find((item) => {
+      return item.id === id;
+    });
+    user.status = "ACTIVE";
+  },
   updateField,
 };
