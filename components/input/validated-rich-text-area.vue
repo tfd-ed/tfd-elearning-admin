@@ -10,7 +10,7 @@
       class="text-gray-600 mb-2 text-xs"
       :class="errors.length ? 'text-red-500' : 'text-gray-600'"
     >
-      {{ $t(name) }}
+      {{ $t(label) }}
     </p>
     <VueEditor
       v-model="description"

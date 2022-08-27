@@ -56,6 +56,8 @@ const messages = {
   upload_a_file: "Upload a File",
   title: "Title",
   instructor: "Instructor",
+  instructor_name: "Instructor Name",
+  instructor_biography: "Instructor Biography",
   duration: "Duration",
   created: "Created",
   next: "Next",
@@ -90,6 +92,8 @@ const messages = {
   all_right_reserved: "All rights reserved.",
   drafted: "Drafted",
   published: "Published",
+  make_published: "Make Published",
+  make_drafted: "Make Drafted",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

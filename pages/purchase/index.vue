@@ -169,9 +169,12 @@ export default {
     async onApproved() {
       for (const select of this.selected) {
         try {
-          const result = await this.$axios.$patch(`v1/purchase/${select.id}`, {
-            status: "VERIFIED",
-          });
+          const result = await this.$axios.$patch(
+            `${this.$api.purchases}/${select.id}`,
+            {
+              status: "VERIFIED",
+            }
+          );
           this.$toast.success(
             select.transaction + ": " + this.$i18n.t("approve"),
             {

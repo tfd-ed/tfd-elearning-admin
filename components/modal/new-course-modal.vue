@@ -206,12 +206,17 @@ export default {
          * Create file
          */
         let formData = new FormData();
-        formData.append("file", this.thumbnail, this.thumbnail.name);
+        let blob = await fetch(this.thumbnail.src).then((r) => r.blob());
+        formData.append("file", blob, this.thumbnail.name);
         const file = await this.$axios.$post("/v1/files", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
+        /**
+         * Release Object URL
+         */
+        URL.revokeObjectURL(this.thumbnail.src);
 
         const course = await this.$axios.$post(this.$api.courses, {
           title: this.title,
@@ -229,7 +234,7 @@ export default {
         await this.$router.push(this.localePath(`/course/${course.id}`));
       } catch (e) {
         this.loading = false;
-        console.log(e.response.data);
+
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });

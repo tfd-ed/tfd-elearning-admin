@@ -1,52 +1,50 @@
 <template>
-  <client-only>
-    <vue-good-table
-      mode="remote"
-      :line-numbers="true"
-      :is-loading.sync="isLoading"
-      theme="polar-bear"
-      style-class="vgt-table condensed"
-      :columns="columns"
-      :rows="rows"
-      :total-rows="totalRecord"
-      :pagination-options="{
-        enabled: true,
-        position: 'bottom',
-        dropdownAllowAll: false,
-        perPageDropdown: [10, 20, 30, 40, 50, 100],
-        nextLabel: $t('next'),
-        prevLabel: $t('prev'),
-        rowsPerPageLabel: $t('row_per_page'),
-        ofLabel: $t('of'),
-        pageLabel: $t('page'), // for 'pages' mode
-        allLabel: $t('all'),
-      }"
-      :sort-options="{
-        enabled: true,
-        initialSortBy: { field: 'createdDate', type: 'desc' },
-      }"
-      :select-options="{ enabled: true }"
-      @on-page-change="onPageChange"
-      @on-sort-change="onSortChange"
-      @on-column-filter="onColumnFilter"
-      @on-per-page-change="onPerPageChange"
-      @on-selected-rows-change="OnSelectedRowChanged"
-    >
-      <template #table-row="props">
-        <slot :props="props" />
-      </template>
-      <template #loadingContent>
-        <div
-          class="flex flex-row justify-center w-3/4 md:w-2/5 mx-auto rounded-lg rounded-t-none"
-        >
-          <GeneralLoading text="loading" />
-        </div>
-      </template>
-      <template #selected-row-actions>
-        <slot name="selected-row-actions"></slot>
-      </template>
-    </vue-good-table>
-  </client-only>
+  <vue-good-table
+    mode="remote"
+    :line-numbers="true"
+    :is-loading.sync="isLoading"
+    theme="polar-bear"
+    style-class="vgt-table condensed"
+    :columns="columns"
+    :rows="rows"
+    :total-rows="totalRecord"
+    :pagination-options="{
+      enabled: true,
+      position: 'bottom',
+      dropdownAllowAll: false,
+      perPageDropdown: [10, 20, 30, 40, 50, 100],
+      nextLabel: $t('next'),
+      prevLabel: $t('prev'),
+      rowsPerPageLabel: $t('row_per_page'),
+      ofLabel: $t('of'),
+      pageLabel: $t('page'), // for 'pages' mode
+      allLabel: $t('all'),
+    }"
+    :sort-options="{
+      enabled: true,
+      initialSortBy: { field: 'createdDate', type: 'desc' },
+    }"
+    :select-options="{ enabled: true }"
+    @on-page-change="onPageChange"
+    @on-sort-change="onSortChange"
+    @on-column-filter="onColumnFilter"
+    @on-per-page-change="onPerPageChange"
+    @on-selected-rows-change="OnSelectedRowChanged"
+  >
+    <template #table-row="props">
+      <slot :props="props" />
+    </template>
+    <template #loadingContent>
+      <div
+        class="flex flex-row justify-center w-3/4 md:w-2/5 mx-auto rounded-lg rounded-t-none"
+      >
+        <GeneralLoading text="loading" />
+      </div>
+    </template>
+    <template #selected-row-actions>
+      <slot name="selected-row-actions"></slot>
+    </template>
+  </vue-good-table>
 </template>
 <script>
 import GeneralLoading from "@/components/loading/general-loading";

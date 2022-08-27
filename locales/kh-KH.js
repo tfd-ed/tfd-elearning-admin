@@ -56,6 +56,8 @@ const messages = {
   upload_a_file: "បង្ហោះ",
   title: "ឈ្មោះ",
   instructor: "គ្រូបង្រៀន",
+  instructor_name: "ឈ្មោះគ្រូបង្រៀន",
+  instructor_biography: "ជីវប្រវត្តិរបស់គ្រូ",
   duration: "រយៈពេល",
   created: "បង្កើត",
   next: "ទៅមុខ",
@@ -90,6 +92,8 @@ const messages = {
   all_right_reserved: "រក្សាសិទ្ធិគ្រប់យ៉ាង។",
   drafted: "ព្រៀង",
   published: "ចេញផ្សាយ",
+  make_published: "ដាក់ចេញផ្សាយ",
+  make_drafted: "ដាក់ជាព្រៀង",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

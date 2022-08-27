@@ -56,6 +56,7 @@
 </template>
 <script>
 import { ValidationProvider } from "vee-validate";
+
 export default {
   components: {
     ValidationProvider,
@@ -97,10 +98,25 @@ export default {
     async onChange(event) {
       const { valid } = await this.$refs.uploader.validate(event);
       if (valid) {
-        // Supports .lazy
-        // Can add validation here
-        this.file = this.$refs.file.files[0];
-        this.$emit("input", this.$refs.file.files[0]);
+        /// Reference to the DOM input element
+        const { files } = event.target;
+        // Ensure that you have a file before attempting to read it
+        if (files && files[0]) {
+          // 1. Revoke the object URL, to allow the garbage collector to destroy the uploaded before file
+          if (this.file.src) {
+            URL.revokeObjectURL(this.file.src);
+          }
+          // 2. Create the blob link to the file to optimize performance:
+          const blob = URL.createObjectURL(files[0]);
+
+          // 3. Update the image. The type will be derived from the extension and it can lead to an incorrect result:
+          this.file = {
+            src: blob,
+            name: files[0].name,
+            type: files[0].type,
+          };
+        }
+        this.$emit("input", this.file);
       }
     },
     formatBytes(bytes, decimals = 2) {

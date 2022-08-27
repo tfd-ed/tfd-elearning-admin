@@ -12,14 +12,14 @@
           </h1>
           <div>
             <ShadowButton
-              v-if="status === 'DRAFTED'"
-              text="published"
+              v-if="course.status === 'DRAFTED'"
+              text="make_published"
               color="bg-blue-700"
               @onClick="makePublished"
             />
             <ShadowButton
               v-else
-              text="drafted"
+              text="make_drafted"
               color="bg-yellow-500"
               @onClick="makeDrafted"
             />
@@ -28,14 +28,15 @@
       </div>
     </div>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-      <!-- Replace with your content -->
       <div class="px-4 py-6 sm:px-0">
         <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-5">
           <div class="lg:col-span-2">
             <ImageLoader
               class="object-cover w-full h-56"
               :src="
-                thumbnail ? thumbnail.path : 'https://dummyimage.com/720x400'
+                course.thumbnail
+                  ? course.thumbnail.path
+                  : 'https://dummyimage.com/720x400'
               "
             />
             <div class="shadow-lg rounded-lg">
@@ -45,6 +46,32 @@
                 </h4>
               </div>
               <div class="px-4 mb-1 -mt-2 divide-y divide-gray-200 card-body">
+                <div class="flex items-center justify-between py-3 text-sm">
+                  <div class="flex items-center space-x-2 text-gray-700">
+                    <StatusIcon />
+                    <span>{{ $t("status") }}</span>
+                  </div>
+                  <span
+                    class="flex items-center justify-center space-x-1.5 rounded-full border-2 px-3 py-1 text-xs font-medium text-gray-800"
+                    :class="
+                      course.status === 'PUBLISHED'
+                        ? 'border-green-500'
+                        : 'animate-pulse border-yellow-400'
+                    "
+                  >
+                    <span
+                      class="-ml-0.5 h-2 w-2 shrink-0 rounded-full"
+                      :class="
+                        course.status === 'PUBLISHED'
+                          ? 'bg-green-600 border-green-500'
+                          : 'bg-yellow-500 border-green-400'
+                      "
+                    ></span>
+                    <span class="capitalize">{{
+                      $t(course.status.toString().toLowerCase())
+                    }}</span>
+                  </span>
+                </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
                     <svg
@@ -84,7 +111,9 @@
                     </svg>
                     <span>{{ $t("students") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{ purchases }}</span>
+                  <span class="font-mono text-gray-900">{{
+                    course.purchases.length
+                  }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
@@ -92,7 +121,7 @@
                     <span>{{ $t("chapters") }}</span>
                   </div>
                   <span class="font-mono text-gray-900">{{
-                    chapters.length
+                    course.chapters.length
                   }}</span>
                 </div>
                 <!--                <div class="flex items-center justify-between py-3 text-sm">-->
@@ -137,7 +166,10 @@
                     <span>{{ $t("purchases") }}</span>
                   </div>
                   <span class="font-mono text-gray-900"
-                    >${{ parseFloat(purchases) * parseFloat(priceLabel) }}</span
+                    >${{
+                      parseFloat(course.purchases.length) *
+                      parseFloat(priceLabel)
+                    }}</span
                   >
                 </div>
                 <!--                <div class="flex items-center justify-between py-3 text-sm">-->
@@ -185,7 +217,7 @@
               >
                 <SimpleValidatedInput
                   id="course_name_edit"
-                  v-model="title"
+                  v-model="course.title"
                   name="course_name"
                   label="course_name"
                   rules="required"
@@ -193,7 +225,7 @@
 
                 <SimpleSelect
                   id="course_category_edit"
-                  v-model="category"
+                  v-model="course.category"
                   name="course_category"
                   label="course_category"
                   route="categories"
@@ -202,7 +234,7 @@
 
                 <SimpleSelect
                   id="course_instructor_edit"
-                  v-model="instructor"
+                  v-model="course.instructor"
                   name="course_instructor"
                   label="instructor"
                   route="instructors"
@@ -211,14 +243,14 @@
 
                 <SimpleValidatedTextArea
                   id="short_course_description_edit"
-                  v-model="shortDescription"
+                  v-model="course.shortDescription"
                   name="short_course_description_edit"
                   label="short_course_description"
                   rules="required"
                 />
                 <ValidatedRichTextArea
                   id="course_description_edit"
-                  v-model="description"
+                  v-model="course.description"
                   name="course_description"
                   label="course_description"
                   rules="required"
@@ -226,14 +258,14 @@
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <SimpleValidatedInput
                     id="course_price_edit"
-                    v-model="price"
+                    v-model="course.price"
                     name="course_price"
                     label="course_price"
                     rules="required|double"
                   />
                   <SimpleFileUpload
                     id="course_tb_edit"
-                    v-model="thumbnail"
+                    v-model="replacedTB"
                     name="course_tb"
                     label="course_tb"
                     rules="mimes:image/jpeg,image/png,image/jpg|size:3000"
@@ -242,7 +274,7 @@
 
                 <SimpleValidatedInput
                   id="payment_link_edit"
-                  v-model="paymentLink"
+                  v-model="course.paymentLink"
                   name="payment_link"
                   label="payment_link"
                   rules="required"
@@ -260,7 +292,7 @@
             </p>
             <div class="flex flex-col space-y-12">
               <ChapterEditCard
-                v-for="(chapter, index) in chapters"
+                v-for="(chapter, index) in course.chapters"
                 :key="index"
                 :chapter="chapter"
                 :index="index"
@@ -276,7 +308,6 @@
           </div>
         </div>
       </div>
-      <!-- /End replace -->
     </div>
   </div>
   <div
@@ -303,8 +334,10 @@ import GeneralContentLoading from "@/components/loading/general-content-loading"
 import ChapterIcon from "@/components/icons/chapter-icon";
 import ChapterEditCard from "@/components/card/chapter-edit-card";
 import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
+import StatusIcon from "~/components/icons/status-icon";
 export default {
   components: {
+    StatusIcon,
     ValidatedRichTextArea,
     ChapterEditCard,
     ChapterIcon,
@@ -326,18 +359,10 @@ export default {
       loading: false,
       loaded: false,
       error: false,
+      course: "",
       title: "",
-      shortDescription: "",
-      description: "",
-      price: "",
-      instructor: "",
-      category: "",
-      paymentLink: "",
-      thumbnail: "",
+      replacedTB: "",
       priceLabel: "",
-      chapters: [],
-      status: "",
-      purchases: 0,
     };
   },
   async fetch() {
@@ -373,18 +398,10 @@ export default {
         },
       }
     );
+    console.log(course);
+    this.course = course;
     this.title = course.title;
-    this.description = course.description;
-    this.shortDescription = course.shortDescription;
-    this.price = course.price;
-    this.instructor = course.instructor;
-    this.category = course.category;
-    this.paymentLink = course.paymentLink;
-    this.thumbnail = course.thumbnail;
-    this.chapters = course.chapters;
-    this.purchases = course.purchases.length;
     this.priceLabel = course.price;
-    this.status = course.status;
   },
   computed: {
     ...mapGetters({
@@ -396,7 +413,7 @@ export default {
       this.$toast.success(
         this.$i18n.t("course") +
           ": " +
-          this.title +
+          this.course.title +
           " " +
           this.$i18n.t("updated"),
         {
@@ -406,33 +423,63 @@ export default {
     },
     async editCourse() {
       try {
+        let file = "";
+        if (this.replacedTB) {
+          /**
+           * Replace TB
+           */
+          let formData = new FormData();
+          let blob = await fetch(this.replacedTB.src).then((r) => r.blob());
+          formData.append("file", blob, this.replacedTB.name);
+          file = await this.$axios.$post("/v1/files", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          /**
+           * Release Object URL
+           */
+          URL.revokeObjectURL(this.replacedTB.src);
+          /**
+           * Call API to delete old file later...
+           * To-do
+           */
+        }
         const updated = await this.$axios.$patch(
           `${this.$api.courses}/${this.$route.params.id}`,
           {
-            title: this.title,
-            shortDescription: this.shortDescription,
-            description: this.description,
-            price: parseFloat(this.price),
-            instructor: this.instructor,
-            category: this.category,
-            paymentLink: this.paymentLink,
+            title: this.course.title,
+            shortDescription: this.course.shortDescription,
+            description: this.course.description,
+            price: parseFloat(this.course.price),
+            instructor: this.course.instructor,
+            thumbnail: file ? file.id : this.course.thumbnail.id,
+            category: this.course.category,
+            paymentLink: this.course.paymentLink,
           }
         );
         this.popCourseUpdated();
+        /**
+         * Wait for image to be uploaded to AWS
+         */
+        setTimeout(() => {
+          this.course.thumbnail = file;
+        }, 3000);
       } catch (e) {
+        console.log(e);
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });
       }
     },
     async addCommand() {
-      this.chapters.push({
+      this.course.chapters.push({
         name: "",
         shortDescription: "",
         description: "",
         duration: "",
         vimeoId: "",
-        chapterNumber: this.chapters.length + 1,
+        chapterNumber: this.course.chapters.length + 1,
       });
     },
     async makeDrafted() {
