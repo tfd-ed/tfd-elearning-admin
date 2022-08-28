@@ -12,7 +12,7 @@
       @click="handleClick"
     >
       <slot name="icon"></slot>
-      {{ text }}
+      {{ $t(text) }}
     </span>
   </div>
 </template>

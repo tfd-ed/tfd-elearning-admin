@@ -8,20 +8,31 @@ module.exports = {
     "./nuxt.config.{js,ts}",
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
         sans: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
-        serif: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
-        mono: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
+        serif: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.serif],
+        mono: ["Ubuntu Mono", ...defaultTheme.fontFamily.mono],
         display: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
         body: ["Noto Sans", "Kantumruy", ...defaultTheme.fontFamily.sans],
       },
     },
   },
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          primary: "#1f2937",
+        },
+      },
+    ],
+  },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
-    require("tw-elements/dist/plugin"),
+    require("daisyui"),
   ],
 };
