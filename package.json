@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow yarn"
   },
   "dependencies": {
     "@nestjsx/crud-request": "5.0.0-alpha.3",
@@ -55,7 +55,7 @@
     "vuex-map-fields": "^1.4.1"
   },
   "engines": {
-    "pnpm": ">=7.5.1",
+    "yarn": ">=1.22.10",
     "node": ">=14.0.0"
   }
 }
