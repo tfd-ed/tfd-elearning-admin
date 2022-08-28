@@ -17,7 +17,15 @@
             @onSelectedRowChanged="onSelected"
           >
             <template #default="props">
-              <div v-for="(prop, index) in props" :key="index">
+              <div
+                v-for="(prop, index) in props"
+                :key="index"
+                :class="
+                  prop.row.status === 'BANNED'
+                    ? 'text-red-500'
+                    : 'text-gray-800'
+                "
+              >
                 <div v-if="prop.column.field === 'createdDate'">
                   {{ $moment(prop.row.createdDate).format("YYYY-MM-DD") }}
                 </div>
@@ -151,14 +159,11 @@ export default {
     async onBan() {
       for (const select of this.selected) {
         try {
-          const result = await this.$axios.$patch(
-            `${this.$api.users}/${select.id}`,
-            {
-              status: "BANNED",
-            }
-          );
+          await this.$axios.$patch(`${this.$api.users}/${select.id}`, {
+            status: "BANNED",
+          });
           this.banUser(select.id);
-          this.$toast.success(select.title + ": " + this.$i18n.t("banned"), {
+          this.$toast.success(select.username + ": " + this.$i18n.t("banned"), {
             duration: 3000,
           });
         } catch (e) {
@@ -171,16 +176,16 @@ export default {
     async onActivate() {
       for (const select of this.selected) {
         try {
-          const result = await this.$axios.$patch(
-            `${this.$api.users}/${select.id}`,
+          await this.$axios.$patch(`${this.$api.users}/${select.id}`, {
+            status: "ACTIVE",
+          });
+          this.activateUser(select.id);
+          this.$toast.success(
+            select.username + ": " + this.$i18n.t("activated"),
             {
-              status: "ACTIVE",
+              duration: 3000,
             }
           );
-          this.activateUser(select.id);
-          this.$toast.success(select.title + ": " + this.$i18n.t("activated"), {
-            duration: 3000,
-          });
         } catch (e) {
           this.$toast.error(e.response.data.message, {
             duration: 3000,

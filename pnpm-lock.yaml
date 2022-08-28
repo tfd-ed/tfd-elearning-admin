@@ -32,6 +32,7 @@ specifiers:
   vue-country-flag: ^2.3.2
   vue-good-table: ^2.21.11
   vue-jest: ^3.0.4
+  vue-no-autocomplete: ^1.2.1
   vue-select: ^3.19.0
   vue-server-renderer: ^2.6.14
   vue-template-compiler: ^2.6.14
@@ -58,6 +59,7 @@ dependencies:
   vue-content-loader: 0.2.3
   vue-country-flag: 2.3.2_vue@2.7.5
   vue-good-table: 2.21.11
+  vue-no-autocomplete: 1.2.1
   vue-select: 3.19.0_vue@2.7.5
   vue-server-renderer: 2.7.5
   vue-template-compiler: 2.7.5
@@ -11666,6 +11668,10 @@ packages:
     resolution: {integrity: sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==}
     dependencies:
       deepmerge: 4.2.2
+    dev: false
+
+  /vue-no-autocomplete/1.2.1:
+    resolution: {integrity: sha512-C0tnRCD9bDl8wCW9kARDfk/KRsZ+4604feDz8Obu0Cudqh1Eyc/pwq1ciBOhX5Z4Gf/1wj79yAZMC48Skdkh+A==}
     dev: false
 
   /vue-no-ssr/1.1.1:

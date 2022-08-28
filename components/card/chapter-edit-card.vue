@@ -95,9 +95,9 @@
         />
         <SimpleValidatedInput
           :id="'chapter_url' + index"
-          v-model="vimeoId"
+          v-model="vimeoUrl"
           name="chapter_url"
-          label="Vimeo ID"
+          label="Vimeo Link"
           rules="required|numeric"
         />
         <SimpleValidatedInput
@@ -155,7 +155,7 @@ export default {
     return {
       name: "",
       description: "",
-      vimeoId: "",
+      vimeoUrl: "",
       duration: "",
       editing: true,
     };
@@ -163,7 +163,7 @@ export default {
   mounted() {
     this.name = this.chapter.name;
     this.description = this.chapter.description;
-    this.vimeoId = this.chapter.vimeoId;
+    this.vimeoUrl = this.chapter.url;
     this.duration = this.chapter.duration;
     if (this.chapter.name !== "") {
       this.editing = false;
@@ -182,7 +182,7 @@ export default {
             {
               name: this.name,
               description: this.description,
-              vimeoId: this.vimeoId,
+              url: this.vimeoUrl,
               duration: parseInt(this.duration),
             }
           );
@@ -206,7 +206,7 @@ export default {
           const newChapter = await this.$axios.$post(this.$api.chapters, {
             name: this.name,
             description: this.description,
-            vimeoId: this.vimeoId,
+            url: this.vimeoUrl,
             duration: parseInt(this.duration),
             chapterNumber: this.index + 1,
             course: this.$route.params.id,

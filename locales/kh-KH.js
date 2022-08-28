@@ -97,6 +97,9 @@ const messages = {
   ban: "ហាមឃាត់",
   activate: "ដាក់ឲ្យប្រើ",
   banned: "ត្រូវបានហាមឃាត់",
+  admin: "អ្នកគ្រប់គ្រង",
+  roles: "តួនាទី",
+  chapter_url: "តំណរទៅកាន់ Vimeo",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

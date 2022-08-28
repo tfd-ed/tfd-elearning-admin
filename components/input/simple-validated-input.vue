@@ -13,11 +13,11 @@
     >
       <input
         :id="id"
+        v-no-autocomplete
         :value="value"
         class="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
         :type="type"
         :placeholder="getPlaceHolder"
-        :autoComplete="autoComplete"
         @input="onInput"
         @change="onChange"
       />
@@ -101,10 +101,6 @@ export default {
     type: {
       type: String,
       default: "text",
-    },
-    autoComplete: {
-      type: Boolean,
-      default: true,
     },
   },
   computed: {

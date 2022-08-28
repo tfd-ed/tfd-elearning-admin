@@ -73,12 +73,12 @@ export default {
           },
         },
         {
-          label: this.$i18n.t("courses"),
+          label: this.$i18n.t("course"),
           field: "courses",
           sortable: false,
         },
         {
-          label: this.$i18n.t("dateOfBirth"),
+          label: this.$i18n.t("date_of_birth"),
           field: "dateOfBirth",
           sortable: true,
         },

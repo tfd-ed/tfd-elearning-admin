@@ -97,6 +97,9 @@ const messages = {
   ban: "Ban",
   activate: "Activate",
   banned: "Banned",
+  admin: "Admin",
+  roles: "Roles",
+  chapter_url: "Vimeo Link",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

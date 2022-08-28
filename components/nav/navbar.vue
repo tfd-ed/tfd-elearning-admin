@@ -8,12 +8,12 @@
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-4">
-              <nuxt-link
-                :to="localePath('/dashboard')"
-                exact
-                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >{{ $t("dashboard") }}</nuxt-link
-              >
+              <!--              <nuxt-link-->
+              <!--                :to="localePath('/dashboard')"-->
+              <!--                exact-->
+              <!--                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"-->
+              <!--                >{{ $t("dashboard") }}</nuxt-link-->
+              <!--              >-->
               <nuxt-link
                 :to="localePath('/course')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -183,13 +183,12 @@
                               {{ $t("profile") }}
                             </nuxt-link>
 
-                            <nuxt-link
-                              :to="localePath('/setting')"
-                              class="block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
+                            <li
+                              class="cursor-pointer block px-4 py-2 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                               role="menuitem"
                             >
-                              {{ $t("setting") }}
-                            </nuxt-link>
+                              {{ $t("setting") }} (Coming Soon)
+                            </li>
                           </div>
 
                           <div class="p-2">
@@ -288,13 +287,13 @@
     <div id="mobile-menu" class="md:hidden">
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <nuxt-link
-          :to="localePath('/dashboard')"
-          exact
-          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          aria-current="page"
-          >{{ $t("dashboard") }}</nuxt-link
-        >
+        <!--        <nuxt-link-->
+        <!--          :to="localePath('/dashboard')"-->
+        <!--          exact-->
+        <!--          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"-->
+        <!--          aria-current="page"-->
+        <!--          >{{ $t("dashboard") }}</nuxt-link-->
+        <!--        >-->
         <nuxt-link
           :to="localePath('/course')"
           exact

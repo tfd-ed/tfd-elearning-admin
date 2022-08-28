@@ -86,7 +86,7 @@ export default {
           data: this.login,
         });
         this.$auth.setUser(response.data.user);
-        this.$router.push(this.localePath("/dashboard"));
+        this.$router.push(this.localePath("/course"));
         this.logging = false;
         this.logged = true;
         this.login = {

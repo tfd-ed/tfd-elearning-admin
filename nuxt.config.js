@@ -31,6 +31,7 @@ export default {
     { src: "~/plugins/vue-select.js", mode: "client" },
     { src: "~/plugins/country-flag.js", mode: "client" },
     { src: "~/plugins/v-lazy-image.js", mode: "client" },
+    { src: "~/plugins/disable-auto-complete.js", mode: "client" },
     { src: "~/plugins/i18n.js" },
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/moment.js" },

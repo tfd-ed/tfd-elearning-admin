@@ -347,7 +347,6 @@ export default {
               dateOfBirth: this.user.dateOfBirth,
               firstname: this.user.firstname,
               lastname: this.user.lastname,
-              password: this.password,
               profile: file.id,
             }
           );
@@ -359,6 +358,16 @@ export default {
               dateOfBirth: this.user.dateOfBirth,
               firstname: this.user.firstname,
               lastname: this.user.lastname,
+            }
+          );
+        }
+        /**
+         * Password Updated
+         */
+        if (this.password) {
+          await this.$axios.$patch(
+            `${this.$api.users}/${this.$route.params.id}`,
+            {
               password: this.password,
             }
           );
@@ -370,6 +379,7 @@ export default {
          */
         setTimeout(() => {
           this.user.profile = file;
+          this.thumbnail = "";
         }, 3000);
       } catch (e) {
         console.log(e);
