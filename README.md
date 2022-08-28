@@ -1,69 +1,85 @@
-# tfd-elearning-admin
 
-## Build Setup
+<h1>TFD E-Learning Admin  
+  <a    
+    href="https://nestjs.com/"    
+    target="blank"    
+  >    
+<br/>    
+<br/>   
+    <img    
+      src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png"    
+      width="180"    
+      alt="Nest Logo"    
+    />      
+        <img    
+      src="https://nuxtjs.org/design-kit/colored-text.png"    
+      width="180"    
+      alt="Nest Logo"    
+    />      
+<img      src="https://camo.githubusercontent.com/53b9876cd8e38928387c6824043b0e2772b15b1bfdb7f42d0864216abbf3dfe8/68747470733a2f2f7265666163746f72696e6775692e6e7963332e63646e2e6469676974616c6f6365616e7370616365732e636f6d2f7461696c77696e642d6c6f676f2e737667"    
+      width="220"    
+      alt="Nest Logo"    
+    />    
 
-```bash
-# install dependencies
-$ yarn install
+  </a>    
+</h1>  
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+<p align="center">    
+<img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" width="75">  
+<img src="https://img.shields.io/badge/node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white" width="80">    
+<img src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" width="100">    
+<img src="https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white" width="80">    
+<img src="https://img.shields.io/badge/Nuxt-black?style=for-the-badge&logo=nuxt.js&logoColor=white" width="70">    
+<img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" width="110">  
+<img src="https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white" width="60">    
+<br/>  
+<a href="https://app.netlify.com/sites/relaxed-neumann-d28ee3/deploys"><img src="https://api.netlify.com/api/v1/badges/249e3dd1-2710-44df-b907-238a20d4cebb/deploy-status"/></a>  
+<a href="https://www.npmjs.com/package/nuxt" target="_blank"><img src="https://badgen.net/npm/v/nuxt" alt="Version" /></a>    
+<a href="https://www.gnu.org/licenses/gpl-3.0" target="_blank"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="Package License" /></a>    
+<img alt="YouTube Channel Subscribers" src="https://img.shields.io/youtube/channel/subscribers/UCJHZ__wUxS9lgTZHMxpMJcQ?style=social">    
+<br/>     
+</p>  
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## Features
 
-# generate static project
-$ yarn generate
+TFD E-Learning Admin allow you to perform basic CRUD on courses, chapters, users, admins.
+
+- Preconfigured [daisyui](https://daisyui.com/) tailwind components with highly customizable interactive components
+- Integrated [@nuxtjs/moment](https://www.npmjs.com/package/@nuxtjs/moment) for time formatting
+- Smooth configurable page, layout transition at ``@/assets/css/main``
+- Integrated [@babel/eslint-parser, prettier](https://www.npmjs.com/package/@babel/eslint-parser) for codes' rules & styles checking and formatting
+
+## TFD E-Learning
+- TFD Blog (Now TFD E-Learning) : https://github.com/tfd-ed/tfd-blog
+- TFD E-Learning Admin: https://github.com/tfd-ed/tfd-elearning-admin
+- TFD E-Learning API: https://github.com/tfd-ed/tfd-nest-blog-api
+
+## Setup Guide
+Make sure you have [TFD E-Learning API](https://github.com/tfd-ed/tfd-nest-blog-api) running and configure your environment accordingly.
+### With Docker (Coming Soon)
+
+### Without Docker
+**Clone** or **Fork** this git repository to your Github account.
+```bash 
+git clone https://github.com/tfd-ed/tfd-elearning-admin 
 ```
+Create **.env** file from **.env.example** and replace **environment variables** with your owns.  
+Make sure [NodeJS](https://nodejs.dev/) version 14.0.0+ is installed in your machine.
+```bash 
+yarn install 
+yarn dev 
+```` 
+Visit http://localhost:3000/
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
-
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+### Production
+```bash 
+# generate static project 
+yarn generate 
+yarn start 
+```   
 
 
-### `pages`
+## Donation
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Kindly donate to the following bank account (Cambodia) if you want to support our works.    
+<a href="https://imgur.com/fEjLJ0E"><img src="https://i.imgur.com/fEjLJ0E.jpg" title="source: imgur.com" width="350"  /></a>
