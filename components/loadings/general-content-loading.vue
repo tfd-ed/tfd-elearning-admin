@@ -6,8 +6,8 @@
   </div>
 </template>
 <script>
-import GeneralLoading from "~/components/loading/general-loading";
-import ContentsLoader from "~/components/loading/contents-loader";
+import GeneralLoading from "~/components/loadings/general-loading";
+import ContentsLoader from "~/components/loadings/contents-loader";
 export default {
   components: { ContentsLoader, GeneralLoading },
 };

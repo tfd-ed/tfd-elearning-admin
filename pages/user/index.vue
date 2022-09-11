@@ -86,10 +86,10 @@
   </div>
 </template>
 <script>
-import TableTemplate from "@/components/table/table-template";
+import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
 import { mapActions, mapMutations } from "vuex";
-import ShadowButton from "~/components/button/shadow-button";
+import ShadowButton from "~/components/buttons/shadow-button";
 const { mapFields } = createHelpers({
   getterType: "user/getField",
   mutationType: "user/updateField",

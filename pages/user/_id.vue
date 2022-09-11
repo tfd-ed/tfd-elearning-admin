@@ -237,14 +237,14 @@
 <script>
 import { mapGetters } from "vuex";
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
-import ImageLoader from "~/components/loader/image-loader";
+import ImageLoader from "~/components/loaders/image-loader";
 import ChapterIcon from "~/components/icons/chapter-icon";
-import SimpleValidatedInput from "~/components/input/simple-validated-input";
-import SimpleFileUpload from "~/components/input/simple-file-upload";
-import ShadowButton from "~/components/button/shadow-button";
+import SimpleValidatedInput from "~/components/inputs/simple-validated-input";
+import SimpleFileUpload from "~/components/inputs/simple-file-upload";
+import ShadowButton from "~/components/buttons/shadow-button";
 import { ValidationObserver } from "vee-validate";
 import StatusIcon from "~/components/icons/status-icon";
-import GeneralContentLoading from "~/components/loading/general-content-loading";
+import GeneralContentLoading from "~/components/loadings/general-content-loading";
 export default {
   components: {
     GeneralContentLoading,

@@ -103,9 +103,9 @@
 </template>
 <script>
 import { mapActions, mapMutations } from "vuex";
-import ShadowButton from "~/components/button/shadow-button";
-import NewCourseModal from "~/components/modal/new-course-modal";
-import TableTemplate from "@/components/table/table-template";
+import ShadowButton from "~/components/buttons/shadow-button";
+import NewCourseModal from "~/components/modals/new-course-modal";
+import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
 const { mapFields } = createHelpers({
   getterType: "course/getField",

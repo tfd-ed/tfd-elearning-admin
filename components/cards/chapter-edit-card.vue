@@ -131,8 +131,8 @@
 </template>
 <script>
 import { ValidationObserver } from "vee-validate";
-import SimpleValidatedInput from "@/components/input/simple-validated-input";
-import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
+import SimpleValidatedInput from "@/components/inputs/simple-validated-input";
+import SimpleValidatedTextArea from "@/components/inputs/simple-validated-text-area";
 export default {
   components: {
     ValidationObserver,
