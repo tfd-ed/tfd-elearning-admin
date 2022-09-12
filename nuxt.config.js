@@ -173,4 +173,8 @@ export default {
       },
     },
   },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || "http://localhost:80",
+    nodeEnv: process.env.NODE_ENV || "dev",
+  },
 };
