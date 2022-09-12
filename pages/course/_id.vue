@@ -319,21 +319,21 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import SimpleValidatedInput from "@/components/input/simple-validated-input";
-import SimpleSelect from "@/components/input/simple-select";
-import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
-import SimpleFileUpload from "@/components/input/simple-file-upload";
+import SimpleValidatedInput from "@/components/inputs/simple-validated-input";
+import SimpleSelect from "@/components/inputs/simple-select";
+import SimpleValidatedTextArea from "@/components/inputs/simple-validated-text-area";
+import SimpleFileUpload from "@/components/inputs/simple-file-upload";
 import MoneyIcon from "@/components/icons/money-icon";
-import ImageLoader from "@/components/loader/image-loader";
+import ImageLoader from "@/components/loaders/image-loader";
 import { ValidationObserver } from "vee-validate";
-import ShadowButton from "@/components/button/shadow-button";
+import ShadowButton from "@/components/buttons/shadow-button";
 import ThunderIcon from "@/components/icons/thunder-icon";
 import HeadNavigator from "@/components/navigator/head-navigator";
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
-import GeneralContentLoading from "@/components/loading/general-content-loading";
+import GeneralContentLoading from "@/components/loadings/general-content-loading";
 import ChapterIcon from "@/components/icons/chapter-icon";
-import ChapterEditCard from "@/components/card/chapter-edit-card";
-import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
+import ChapterEditCard from "@/components/cards/chapter-edit-card";
+import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 import StatusIcon from "~/components/icons/status-icon";
 export default {
   components: {

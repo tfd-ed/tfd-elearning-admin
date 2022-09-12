@@ -47,7 +47,7 @@
   </vue-good-table>
 </template>
 <script>
-import GeneralLoading from "@/components/loading/general-loading";
+import GeneralLoading from "@/components/loadings/general-loading";
 export default {
   components: { GeneralLoading },
   props: {

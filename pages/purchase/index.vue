@@ -97,8 +97,8 @@
 </template>
 <script>
 import { mapActions, mapMutations } from "vuex";
-import ShadowButton from "@/components/button/shadow-button";
-import TableTemplate from "@/components/table/table-template";
+import ShadowButton from "@/components/buttons/shadow-button";
+import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
 const { mapFields } = createHelpers({
   getterType: "purchase/getField",
@@ -170,7 +170,7 @@ export default {
       for (const select of this.selected) {
         try {
           const result = await this.$axios.$patch(
-            `${this.$api.purchases}/${select.id}`,
+            `${this.$api.purchases}/${select.id}/approve`,
             {
               status: "VERIFIED",
             }

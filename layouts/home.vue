@@ -1,13 +1,14 @@
 <template>
   <div class="flex flex-col h-screen">
-    <NavNavbar />
+    <Navbar />
     <nuxt class="flex-grow" />
     <Footer />
   </div>
 </template>
 <script>
-import Footer from "@/components/footer/footer";
+import Footer from "@/components/footers/footer";
+import Navbar from "@/components/navs/navbar";
 export default {
-  components: { Footer },
+  components: { Navbar, Footer },
 };
 </script>

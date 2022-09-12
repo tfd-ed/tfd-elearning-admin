@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import ShadowButton from "~/components/button/shadow-button";
+import ShadowButton from "~/components/buttons/shadow-button";
 export default {
   name: "IndexPage",
   auth: "guest",
