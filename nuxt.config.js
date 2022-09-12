@@ -134,7 +134,7 @@ export default {
     proxy: true,
     baseURL: process.env.BASE_URL || "http://localhost:80",
     // proxyHeaders: false,
-    // credentials: true,
+    credentials: true,
   },
   proxy: {
     "/v1/": {
