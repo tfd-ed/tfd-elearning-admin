@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: "server",
 
   ssr: true,
 
@@ -134,7 +134,7 @@ export default {
     proxy: true,
     baseURL: process.env.BASE_URL || "http://localhost:80",
     // proxyHeaders: false,
-    credentials: true,
+    // credentials: true,
   },
   proxy: {
     "/v1/": {
@@ -174,6 +174,10 @@ export default {
     },
   },
   publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || "http://localhost:80",
+    nodeEnv: process.env.NODE_ENV || "dev",
+  },
+  privateRuntimeConfig: {
     baseURL: process.env.BASE_URL || "http://localhost:80",
     nodeEnv: process.env.NODE_ENV || "dev",
   },

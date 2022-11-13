@@ -100,6 +100,7 @@ const messages = {
   admin: "Admin",
   roles: "Roles",
   chapter_url: "Vimeo Link",
+  promotional_vimeo_link: "Promotional Vimeo Link",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

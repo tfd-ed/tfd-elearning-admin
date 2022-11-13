@@ -55,7 +55,7 @@
     "vuex-map-fields": "^1.4.1"
   },
   "engines": {
-    "yarn": ">=1.22.10",
-    "node": ">=14.0.0"
+    "yarn": "1.X",
+    "node": "16.X"
   }
 }

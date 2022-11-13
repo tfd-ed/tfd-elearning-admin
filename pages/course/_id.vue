@@ -279,6 +279,13 @@
                   label="payment_link"
                   rules="required"
                 />
+                <SimpleValidatedInput
+                  id="promotional_vimeo_link_edit"
+                  v-model="course.promotionalVimeoLink"
+                  name="promotional_vimeo_link"
+                  label="promotional_vimeo_link"
+                  rules="required"
+                />
 
                 <div class="mt-4 flex flex-row justify-center">
                   <button type="submit">
@@ -456,6 +463,7 @@ export default {
             thumbnail: file ? file.id : this.course.thumbnail.id,
             category: this.course.category,
             paymentLink: this.course.paymentLink,
+            promotionalVimeoLink: this.course.promotionalVimeoLink,
           }
         );
         this.popCourseUpdated();

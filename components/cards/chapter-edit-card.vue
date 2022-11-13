@@ -95,10 +95,10 @@
         />
         <SimpleValidatedInput
           :id="'chapter_url' + index"
-          v-model="vimeoUrl"
+          v-model="vimeoId"
           name="chapter_url"
-          label="Vimeo Link"
-          rules="required|numeric"
+          label="Vimeo ID"
+          rules="required"
         />
         <SimpleValidatedInput
           :id="'chapter_duration' + index"
@@ -155,7 +155,7 @@ export default {
     return {
       name: "",
       description: "",
-      vimeoUrl: "",
+      vimeoId: "",
       duration: "",
       editing: true,
     };
@@ -163,7 +163,7 @@ export default {
   mounted() {
     this.name = this.chapter.name;
     this.description = this.chapter.description;
-    this.vimeoUrl = this.chapter.url;
+    this.vimeoId = this.chapter.vimeoId;
     this.duration = this.chapter.duration;
     if (this.chapter.name !== "") {
       this.editing = false;
@@ -182,7 +182,7 @@ export default {
             {
               name: this.name,
               description: this.description,
-              url: this.vimeoUrl,
+              vimeoId: this.vimeoId,
               duration: parseInt(this.duration),
             }
           );

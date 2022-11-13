@@ -89,6 +89,14 @@
           </div>
 
           <SimpleValidatedInput
+            id="promotional_vimeo_link"
+            v-model="promotional"
+            name="promotional_vimeo_link"
+            label="promotional_vimeo_link"
+            rules="required"
+          />
+
+          <SimpleValidatedInput
             id="payment_link"
             v-model="paymentLink"
             name="payment_link"
@@ -139,6 +147,7 @@ export default {
       category: "",
       instructor: "",
       paymentLink: "",
+      promotional: "",
       thumbnail: "",
       chapters: [],
       customToolbar: [
@@ -226,6 +235,7 @@ export default {
           category: this.category.id,
           instructor: this.instructor.id,
           paymentLink: this.paymentLink,
+          promotionalVimeoLink: this.promotional,
           thumbnail: file.id,
         });
         this.loading = false;
