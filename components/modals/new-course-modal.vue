@@ -89,6 +89,14 @@
           </div>
 
           <SimpleValidatedInput
+            id="promotional_vimeo_link"
+            v-model="promotional"
+            name="promotional_vimeo_link"
+            label="promotional_vimeo_link"
+            rules="required"
+          />
+
+          <SimpleValidatedInput
             id="payment_link"
             v-model="paymentLink"
             name="payment_link"
@@ -108,14 +116,14 @@
 </template>
 <script>
 import { ValidationObserver } from "vee-validate";
-import ModalTemplate from "~/components/modal/modal-template";
-import ShadowButton from "@/components/button/shadow-button";
-import SimpleValidatedInput from "@/components/input/simple-validated-input";
-import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
-import SimpleSelect from "@/components/input/simple-select";
+import ModalTemplate from "~/components/modals/modal-template";
+import ShadowButton from "@/components/buttons/shadow-button";
+import SimpleValidatedInput from "@/components/inputs/simple-validated-input";
+import SimpleValidatedTextArea from "@/components/inputs/simple-validated-text-area";
+import SimpleSelect from "@/components/inputs/simple-select";
 import { mapMutations } from "vuex";
-import SimpleFileUpload from "@/components/input/simple-file-upload";
-import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
+import SimpleFileUpload from "@/components/inputs/simple-file-upload";
+import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 export default {
   components: {
     ValidatedRichTextArea,
@@ -139,6 +147,7 @@ export default {
       category: "",
       instructor: "",
       paymentLink: "",
+      promotional: "",
       thumbnail: "",
       chapters: [],
       customToolbar: [
@@ -226,6 +235,7 @@ export default {
           category: this.category.id,
           instructor: this.instructor.id,
           paymentLink: this.paymentLink,
+          promotionalVimeoLink: this.promotional,
           thumbnail: file.id,
         });
         this.loading = false;

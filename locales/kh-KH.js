@@ -100,6 +100,7 @@ const messages = {
   admin: "អ្នកគ្រប់គ្រង",
   roles: "តួនាទី",
   chapter_url: "តំណរទៅកាន់ Vimeo",
+  promotional_vimeo_link: "តំណភ្ជាប់ Vimeo ផ្សព្វផ្សាយ",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

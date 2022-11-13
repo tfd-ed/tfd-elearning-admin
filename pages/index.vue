@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import ShadowButton from "~/components/button/shadow-button";
+import ShadowButton from "~/components/buttons/shadow-button";
 export default {
   name: "IndexPage",
   auth: "guest",
@@ -86,7 +86,7 @@ export default {
           data: this.login,
         });
         this.$auth.setUser(response.data.user);
-        this.$router.push(this.localePath("/course"));
+        await this.$router.push(this.localePath("/course"));
         this.logging = false;
         this.logged = true;
         this.login = {

@@ -162,15 +162,15 @@
 </template>
 <script>
 import { mapGetters } from "vuex";
-import GeneralContentLoading from "@/components/loading/general-content-loading";
-import ImageLoader from "@/components/loader/image-loader";
+import GeneralContentLoading from "@/components/loadings/general-content-loading";
+import ImageLoader from "@/components/loaders/image-loader";
 import ChapterIcon from "@/components/icons/chapter-icon";
 import { ValidationObserver } from "vee-validate";
-import SimpleValidatedInput from "@/components/input/simple-validated-input";
-import SimpleValidatedTextArea from "@/components/input/simple-validated-text-area";
-import ValidatedRichTextArea from "@/components/input/validated-rich-text-area";
-import SimpleFileUpload from "@/components/input/simple-file-upload";
-import ShadowButton from "@/components/button/shadow-button";
+import SimpleValidatedInput from "@/components/inputs/simple-validated-input";
+import SimpleValidatedTextArea from "@/components/inputs/simple-validated-text-area";
+import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
+import SimpleFileUpload from "@/components/inputs/simple-file-upload";
+import ShadowButton from "@/components/buttons/shadow-button";
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 
 export default {

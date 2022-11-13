@@ -45,7 +45,7 @@
   </div>
 </template>
 <script>
-import TableTemplate from "@/components/table/table-template";
+import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
 import { mapActions } from "vuex";
 const { mapFields } = createHelpers({
