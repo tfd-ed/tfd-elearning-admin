@@ -27,6 +27,12 @@
                 >{{ $t("users") }}</nuxt-link
               >
               <nuxt-link
+                :to="localePath('/admin')"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                exact
+                >{{ $t("admin") }}</nuxt-link
+              >
+              <nuxt-link
                 :to="localePath('/instructor')"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 exact
@@ -305,6 +311,12 @@
           :to="localePath('/user')"
           class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >{{ $t("users") }}</nuxt-link
+        >
+        <nuxt-link
+          exact
+          :to="localePath('/admin')"
+          class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >{{ $t("admin") }}</nuxt-link
         >
         <nuxt-link
           exact

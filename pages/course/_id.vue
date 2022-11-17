@@ -223,6 +223,14 @@
                   rules="required"
                 />
 
+                <SimpleValidatedInput
+                  id="course_url_edit"
+                  v-model="course.titleURL"
+                  name="course_url"
+                  label="course_url"
+                  rules="required"
+                />
+
                 <SimpleSelect
                   id="course_category_edit"
                   v-model="course.category"
@@ -405,7 +413,7 @@ export default {
         },
       }
     );
-    console.log(course);
+    // console.log(course);
     this.course = course;
     this.title = course.title;
     this.priceLabel = course.price;
@@ -456,6 +464,7 @@ export default {
           `${this.$api.courses}/${this.$route.params.id}`,
           {
             title: this.course.title,
+            titleURL: this.course.titleURL,
             shortDescription: this.course.shortDescription,
             description: this.course.description,
             price: parseFloat(this.course.price),

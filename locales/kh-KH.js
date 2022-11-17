@@ -98,9 +98,13 @@ const messages = {
   activate: "ដាក់ឲ្យប្រើ",
   banned: "ត្រូវបានហាមឃាត់",
   admin: "អ្នកគ្រប់គ្រង",
+  new_admin: "បង្កើតអ្នកគ្រប់គ្រងថ្មី",
+  new_user: "បង្កើតអ្នកប្រើប្រាស់ថ្មី",
   roles: "តួនាទី",
   chapter_url: "តំណរទៅកាន់ Vimeo",
+  course_url: "Course Display URL",
   promotional_vimeo_link: "តំណភ្ជាប់ Vimeo ផ្សព្វផ្សាយ",
+  role: "តួនាទី",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

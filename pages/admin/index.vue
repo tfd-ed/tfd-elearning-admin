@@ -4,9 +4,9 @@
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <!--        <h1 class="text-3xl font-bold text-gray-900">{{ $t("users") }}</h1>-->
         <div class="flex flex-row justify-between">
-          <h1 class="text-3xl font-bold text-gray-900">{{ $t("users") }}</h1>
+          <h1 class="text-3xl font-bold text-gray-900">{{ $t("admin") }}</h1>
           <!--          <label for="newCourseModal" class="m-1">-->
-          <!--            <ShadowButton text="new_user" color="bg-green-600" />-->
+          <!--            <ShadowButton text="new_admin" color="bg-green-600" />-->
           <!--          </label>-->
         </div>
       </div>
@@ -17,9 +17,9 @@
         <div class="px-4 py-6 sm:px-0">
           <TableTemplate
             :columns="columns"
-            :rows="users"
-            :total-record="totalRecord"
-            @loaded="fetchUsers"
+            :rows="admins"
+            :total-record="totalAdminRecord"
+            @loaded="fetchAdmins"
             @onSelectedRowChanged="onSelected"
           >
             <template #default="props">
@@ -64,6 +64,11 @@
                       {{ prop.row.username }}
                     </p>
                   </nuxt-link>
+                </div>
+                <div v-else-if="prop.column.field === 'roles'">
+                  <p v-for="(role, index) in prop.row.roles" :key="index">
+                    {{ role }}
+                  </p>
                 </div>
                 <span v-else>
                   {{ prop.formattedRow[prop.column.field] }}
@@ -130,14 +135,14 @@ export default {
           },
         },
         {
-          label: this.$i18n.t("purchases"),
-          field: "purchases",
-          sortable: false,
-        },
-        {
           label: this.$i18n.t("status"),
           field: "status",
           sortable: true,
+        },
+        {
+          label: this.$i18n.t("role"),
+          field: "roles",
+          sortable: false,
         },
         {
           label: this.$i18n.t("created"),
@@ -149,11 +154,11 @@ export default {
     };
   },
   computed: {
-    ...mapFields(["users", "totalRecord"]),
+    ...mapFields(["admins", "totalAdminRecord"]),
   },
   methods: {
     ...mapActions({
-      fetchUsers: "user/fetchUsers",
+      fetchAdmins: "user/fetchAdmins",
     }),
     ...mapMutations({
       banUser: "user/BAN_USER",
