@@ -131,7 +131,7 @@ export default {
 
   // Nuxt Axios
   axios: {
-    proxy: true,
+    proxy: process.env.APP_ENV === "dev",
     baseURL: process.env.BASE_URL || "http://localhost:80",
     // proxyHeaders: false,
     // credentials: true,
