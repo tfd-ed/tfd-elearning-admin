@@ -93,6 +93,12 @@
               color="bg-blue-600"
               @onClick="onApproved"
             />
+            <ShadowButton
+              class="m-1"
+              text="make_drafted"
+              color="bg-yellow-600"
+              @onClick="onMakeDrafted"
+            />
           </template>
         </TableTemplate>
       </div>
@@ -169,6 +175,7 @@ export default {
     }),
     ...mapMutations({
       publishCourse: "course/PUBLISHED_COURSE",
+      makeDraftedCourse: "course/MAKE_DRAFTED_COURSE",
     }),
     onSelected(param) {
       this.selected = param.selectedRows;
@@ -176,16 +183,33 @@ export default {
     async onApproved() {
       for (const select of this.selected) {
         try {
-          const result = await this.$axios.$patch(
-            `${this.$api.courses}/${select.id}`,
-            {
-              status: "PUBLISHED",
-            }
-          );
+          await this.$axios.$patch(`${this.$api.courses}/${select.id}`, {
+            status: "PUBLISHED",
+          });
           this.publishCourse(select.id);
           this.$toast.success(select.title + ": " + this.$i18n.t("published"), {
             duration: 3000,
           });
+        } catch (e) {
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+    },
+    async onMakeDrafted() {
+      for (const select of this.selected) {
+        try {
+          await this.$axios.$patch(`${this.$api.courses}/${select.id}`, {
+            status: "DRAFTED",
+          });
+          this.makeDraftedCourse(select.id);
+          this.$toast.error(
+            select.title + ": " + this.$i18n.t("make_drafted"),
+            {
+              duration: 3000,
+            }
+          );
         } catch (e) {
           this.$toast.error(e.response.data.message, {
             duration: 3000,

@@ -98,9 +98,13 @@ const messages = {
   activate: "Activate",
   banned: "Banned",
   admin: "Admin",
+  new_admin: "New Admin",
+  new_user: "New User",
   roles: "Roles",
   chapter_url: "Vimeo Link",
+  course_url: "Course Display URL",
   promotional_vimeo_link: "Promotional Vimeo Link",
+  role: "Role",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

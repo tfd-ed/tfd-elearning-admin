@@ -96,7 +96,7 @@ export default {
       } catch (err) {
         // this.$toast.global.error(); //Using custom toast
         this.logging = false;
-
+        console.log(err);
         this.$toast.error(err.response.data.message, {
           duration: 3000,
         });
