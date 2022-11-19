@@ -206,7 +206,7 @@ export default {
           const newChapter = await this.$axios.$post(this.$api.chapters, {
             name: this.name,
             description: this.description,
-            url: this.vimeoUrl,
+            vimeoId: this.vimeoId,
             duration: parseInt(this.duration),
             chapterNumber: this.index + 1,
             course: this.$route.params.id,
