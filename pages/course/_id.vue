@@ -311,6 +311,7 @@
                 :key="index"
                 :chapter="chapter"
                 :index="index"
+                @deleteCommand="deleteRequest"
               ></ChapterEditCard>
             </div>
 
@@ -350,6 +351,7 @@ import ChapterIcon from "@/components/icons/chapter-icon";
 import ChapterEditCard from "@/components/cards/chapter-edit-card";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 import StatusIcon from "~/components/icons/status-icon";
+
 export default {
   components: {
     StatusIcon,
@@ -438,6 +440,7 @@ export default {
     },
     async editCourse() {
       try {
+        this.loading = true;
         let file = "";
         if (this.replacedTB) {
           /**
@@ -482,7 +485,9 @@ export default {
         setTimeout(() => {
           this.course.thumbnail = file;
         }, 3000);
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         console.log(e);
         this.$toast.error(e.response.data.message, {
           duration: 3000,
@@ -501,6 +506,7 @@ export default {
     },
     async makeDrafted() {
       try {
+        this.loading = true;
         const updated = await this.$axios.$patch(
           `${this.$api.courses}/${this.$route.params.id}`,
           {
@@ -509,7 +515,9 @@ export default {
         );
         this.popCourseUpdated();
         this.course.status = "DRAFTED";
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });
@@ -517,6 +525,7 @@ export default {
     },
     async makePublished() {
       try {
+        this.loading = true;
         const updated = await this.$axios.$patch(
           `${this.$api.courses}/${this.$route.params.id}`,
           {
@@ -525,11 +534,43 @@ export default {
         );
         this.popCourseUpdated();
         this.course.status = "PUBLISHED";
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });
       }
+    },
+    async deleteRequest(id) {
+      this.loading = true;
+      if (!id) {
+        /**
+         * Delete empty chapter
+         */
+        this.course.chapters.splice(-1);
+      } else {
+        try {
+          /**
+           * Remove from Server
+           */
+          this.$axios.$delete(`${this.$api.chapters}/${id}`);
+          /**
+           * Remove from Chapter List
+           * @type {T[]}
+           */
+          this.course.chapters = this.course.chapters.filter(
+            (item) => item.id !== id
+          );
+        } catch (e) {
+          this.loading = false;
+          console.log(e);
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+      this.loading = false;
     },
   },
 };

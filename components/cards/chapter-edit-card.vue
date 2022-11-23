@@ -58,8 +58,10 @@
               </g>
             </svg>
           </button>
-          <div
+          <button
             class="z-30 block p-4 cursor-pointer text-red-700 transition-all bg-red-100 border-2 border-white rounded-full hover:scale-110 focus:outline-none focus:ring active:bg-red-50"
+            type="button"
+            @click="onDeleteChapter"
           >
             <svg
               class="w-4 h-4"
@@ -75,7 +77,7 @@
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
       <div v-if="editing" class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -105,7 +107,7 @@
           v-model="duration"
           name="duration"
           label="duration"
-          rules="required|numeric"
+          rules="required|max_value:10000"
         />
       </div>
       <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -153,6 +155,7 @@ export default {
   emits: ["deleteCommand", "addCommand"],
   data() {
     return {
+      id: "",
       name: "",
       description: "",
       vimeoId: "",
@@ -161,6 +164,7 @@ export default {
     };
   },
   mounted() {
+    this.id = this.chapter.id;
     this.name = this.chapter.name;
     this.description = this.chapter.description;
     this.vimeoId = this.chapter.vimeoId;
@@ -171,14 +175,14 @@ export default {
   },
   methods: {
     async editChapter() {
-      if (this.chapter.id) {
+      if (this.id) {
         /**
          * Editing
          * @type {Promise<any>}
          */
         try {
           const update = await this.$axios.$patch(
-            `${this.$api.chapters}/${this.chapter.id}`,
+            `${this.$api.chapters}/${this.id}`,
             {
               name: this.name,
               description: this.description,
@@ -211,9 +215,10 @@ export default {
             chapterNumber: this.index + 1,
             course: this.$route.params.id,
           });
+          this.id = newChapter.id;
           this.$toast.success(
             this.$i18n.t("chapters") +
-              newChapter.id +
+              newChapter.name +
               " " +
               this.$i18n.t("created"),
             {
@@ -227,6 +232,9 @@ export default {
         }
       }
       this.editing = !this.editing;
+    },
+    async onDeleteChapter() {
+      this.$emit("deleteCommand", this.id);
     },
   },
 };
