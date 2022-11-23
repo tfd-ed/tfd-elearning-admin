@@ -36,6 +36,7 @@ export default {
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/moment.js" },
     { src: "~/plugins/injector.js" },
+    { src: "~/plugins/vue2-filters" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
