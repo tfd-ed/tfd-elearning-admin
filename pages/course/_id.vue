@@ -307,7 +307,11 @@
             </p>
             <div class="flex flex-col space-y-12">
               <ChapterEditCard
-                v-for="(chapter, index) in course.chapters"
+                v-for="(chapter, index) in orderBy(
+                  course.chapters,
+                  'chapterNumber',
+                  true
+                )"
                 :key="index"
                 :chapter="chapter"
                 :index="index"
@@ -351,7 +355,7 @@ import ChapterIcon from "@/components/icons/chapter-icon";
 import ChapterEditCard from "@/components/cards/chapter-edit-card";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 import StatusIcon from "~/components/icons/status-icon";
-
+import Vue2Filters from "vue2-filters";
 export default {
   components: {
     StatusIcon,
@@ -370,6 +374,7 @@ export default {
     SimpleSelect,
     SimpleValidatedInput,
   },
+  mixins: [Vue2Filters.mixin],
   layout: "home",
   data() {
     return {
@@ -421,6 +426,12 @@ export default {
     this.priceLabel = course.price;
   },
   computed: {
+    orderedChapters() {
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      return this.course.chapters.sort((a, b) =>
+        a.chapterNumber.localeCompare(b.chapterNumber)
+      );
+    },
     ...mapGetters({
       getCourse: "course/getCourse",
     }),
