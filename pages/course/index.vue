@@ -72,6 +72,28 @@
                   }}</span>
                 </span>
               </div>
+              <div v-else-if="prop.column.field === 'type'">
+                <span
+                  class="flex items-center justify-center w-full space-x-1.5 rounded-full border-2 px-3 py-1 text-xs font-medium text-gray-800"
+                  :class="
+                    prop.row.type === 'PAID'
+                      ? 'border-blue-500'
+                      : 'border-red-400'
+                  "
+                >
+                  <MoneyIcon
+                    class="-ml-0.5 h-5 w-5 shrink-0 rounded-full"
+                    :class="
+                      prop.row.type === 'PAID'
+                        ? 'text-blue-600 '
+                        : 'text-red-500'
+                    "
+                  />
+                  <span class="capitalize">{{
+                    $t(prop.row.type.toString().toLowerCase())
+                  }}</span>
+                </span>
+              </div>
               <div v-else-if="prop.column.field === 'purchases'">
                 <p class="font-semibold text-blue-600">
                   {{
@@ -113,12 +135,13 @@ import ShadowButton from "~/components/buttons/shadow-button";
 import NewCourseModal from "~/components/modals/new-course-modal";
 import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
+import MoneyIcon from "@/components/icons/money-icon";
 const { mapFields } = createHelpers({
   getterType: "course/getField",
   mutationType: "course/updateField",
 });
 export default {
-  components: { TableTemplate, NewCourseModal, ShadowButton },
+  components: { MoneyIcon, TableTemplate, NewCourseModal, ShadowButton },
   layout: "home",
   middleware: "auth",
   data() {
@@ -150,6 +173,11 @@ export default {
         {
           label: this.$i18n.t("status"),
           field: "status",
+          sortable: true,
+        },
+        {
+          label: this.$i18n.t("course_type"),
+          field: "type",
           sortable: true,
         },
         {

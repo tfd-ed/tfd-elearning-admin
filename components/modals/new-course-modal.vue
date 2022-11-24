@@ -32,6 +32,14 @@
             rules="required"
             :auto-complete="false"
           />
+          <SimpleSelectLocal
+            id="course_type"
+            v-model="type"
+            name="course_type"
+            label="course_type"
+            rules="required"
+            :options="options"
+          />
           <SimpleSelect
             id="course_category"
             v-model="category"
@@ -75,6 +83,7 @@
             <SimpleValidatedInput
               id="course_price"
               v-model="price"
+              :disabled="type === 'FREE'"
               name="course_price"
               label="course_price"
               rules="required|double"
@@ -124,8 +133,11 @@ import SimpleSelect from "@/components/inputs/simple-select";
 import { mapMutations } from "vuex";
 import SimpleFileUpload from "@/components/inputs/simple-file-upload";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
+import SimpleSelectLocal from "@/components/inputs/simple-select-local";
+import { CourseEnum } from "static/enums/course-enum";
 export default {
   components: {
+    SimpleSelectLocal,
     ValidatedRichTextArea,
     SimpleFileUpload,
     SimpleValidatedTextArea,
@@ -143,13 +155,15 @@ export default {
       title: "",
       description: "",
       shortDescription: "",
-      price: "",
+      price: 0.0,
       category: "",
       instructor: "",
       paymentLink: "",
       promotional: "",
       thumbnail: "",
+      type: "",
       chapters: [],
+      options: CourseEnum,
       customToolbar: [
         [
           {
@@ -233,6 +247,7 @@ export default {
           shortDescription: this.shortDescription,
           price: parseFloat(this.price),
           category: this.category.id,
+          type: this.type,
           instructor: this.instructor.id,
           paymentLink: this.paymentLink,
           promotionalVimeoLink: this.promotional,
