@@ -147,7 +147,9 @@
                     <MoneyIcon class="text-green-600" />
                     <span>{{ $t("price") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{ priceLabel }}</span>
+                  <span class="font-mono text-gray-900">{{
+                    course.type === "PAID" ? priceLabel : $t("free")
+                  }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
