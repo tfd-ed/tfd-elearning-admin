@@ -105,6 +105,10 @@ const messages = {
   course_url: "Course Display URL",
   promotional_vimeo_link: "Promotional Vimeo Link",
   role: "Role",
+  course_type: "Course Type",
+  paid: "Paid",
+  free: "Free",
+  delete: "Delete",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

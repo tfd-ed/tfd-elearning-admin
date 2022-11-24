@@ -147,7 +147,9 @@
                     <MoneyIcon class="text-green-600" />
                     <span>{{ $t("price") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{ priceLabel }}</span>
+                  <span class="font-mono text-gray-900">{{
+                    course.type === "PAID" ? priceLabel : $t("free")
+                  }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
@@ -248,6 +250,14 @@
                   route="instructors"
                   rules="required"
                 />
+                <SimpleSelectLocal
+                  id="course_type_edit"
+                  v-model="course.type"
+                  name="course_type"
+                  label="course_type"
+                  rules="required"
+                  :options="options"
+                />
 
                 <SimpleValidatedTextArea
                   id="short_course_description_edit"
@@ -267,6 +277,7 @@
                   <SimpleValidatedInput
                     id="course_price_edit"
                     v-model="course.price"
+                    :disabled="course.type === 'FREE'"
                     name="course_price"
                     label="course_price"
                     rules="required|double"
@@ -356,8 +367,11 @@ import ChapterEditCard from "@/components/cards/chapter-edit-card";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 import StatusIcon from "~/components/icons/status-icon";
 import Vue2Filters from "vue2-filters";
+import SimpleSelectLocal from "@/components/inputs/simple-select-local";
+import { CourseEnum } from "static/enums/course-enum";
 export default {
   components: {
+    SimpleSelectLocal,
     StatusIcon,
     ValidatedRichTextArea,
     ChapterEditCard,
@@ -385,6 +399,7 @@ export default {
       title: "",
       replacedTB: "",
       priceLabel: "",
+      options: CourseEnum,
     };
   },
   async fetch() {
@@ -483,6 +498,7 @@ export default {
             description: this.course.description,
             price: parseFloat(this.course.price),
             instructor: this.course.instructor,
+            type: this.course.type,
             thumbnail: file ? file.id : this.course.thumbnail.id,
             category: this.course.category,
             paymentLink: this.course.paymentLink,

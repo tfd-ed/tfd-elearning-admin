@@ -105,6 +105,10 @@ const messages = {
   course_url: "Course Display URL",
   promotional_vimeo_link: "តំណភ្ជាប់ Vimeo ផ្សព្វផ្សាយ",
   role: "តួនាទី",
+  course_type: "ប្រភេទមេរៀន",
+  paid: "បង់លុយ",
+  free: "ឥតគិតថ្លៃ",
+  delete: "លុប",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",
