@@ -87,6 +87,12 @@
                 color="bg-blue-600"
                 @onClick="onApproved"
               />
+              <ShadowButton
+                class="m-1"
+                text="delete"
+                color="bg-red-600"
+                @onClick="onDelete"
+              />
             </template>
           </TableTemplate>
         </div>
@@ -182,6 +188,23 @@ export default {
             }
           );
           this.verifyPurchase(select.id);
+        } catch (e) {
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+    },
+    async onDelete() {
+      for (const select of this.selected) {
+        try {
+          await this.$axios.$delete(`${this.$api.purchases}/${select.id}`);
+          this.$toast.error(
+            select.transaction + ": " + this.$i18n.t("delete"),
+            {
+              duration: 3000,
+            }
+          );
         } catch (e) {
           this.$toast.error(e.response.data.message, {
             duration: 3000,

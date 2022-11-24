@@ -108,6 +108,7 @@ const messages = {
   course_type: "ប្រភេទមេរៀន",
   paid: "បង់លុយ",
   free: "ឥតគិតថ្លៃ",
+  delete: "លុប",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",

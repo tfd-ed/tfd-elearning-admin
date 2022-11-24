@@ -108,6 +108,7 @@ const messages = {
   course_type: "Course Type",
   paid: "Paid",
   free: "Free",
+  delete: "Delete",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",
