@@ -109,6 +109,7 @@ const messages = {
   paid: "Paid",
   free: "Free",
   delete: "Delete",
+  bk_payment_link: "Bakong Payment Link",
   fields: {
     firstname: "Firstname",
     lastname: "Lastname",

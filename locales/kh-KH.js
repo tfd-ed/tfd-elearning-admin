@@ -109,6 +109,7 @@ const messages = {
   paid: "បង់លុយ",
   free: "ឥតគិតថ្លៃ",
   delete: "លុប",
+  bk_payment_link: "Bakong Payment Link",
   fields: {
     firstname: "ឈ្មោះ",
     lastname: "ត្រកូល",
