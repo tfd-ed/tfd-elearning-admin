@@ -299,6 +299,13 @@
                   rules="required"
                 />
                 <SimpleValidatedInput
+                  id="bk_payment_link_edit"
+                  v-model="course.bkPaymentLink"
+                  name="bk_payment_link"
+                  label="bk_payment_link"
+                  rules="required"
+                />
+                <SimpleValidatedInput
                   id="promotional_vimeo_link_edit"
                   v-model="course.promotionalVimeoLink"
                   name="promotional_vimeo_link"
@@ -502,6 +509,7 @@ export default {
             thumbnail: file ? file.id : this.course.thumbnail.id,
             category: this.course.category,
             paymentLink: this.course.paymentLink,
+            bkPaymentLink: this.course.bkPaymentLink,
             promotionalVimeoLink: this.course.promotionalVimeoLink,
           }
         );

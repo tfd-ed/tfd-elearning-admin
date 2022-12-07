@@ -112,6 +112,13 @@
             label="payment_link"
             rules="required"
           />
+          <SimpleValidatedInput
+            id="bk_payment_link"
+            v-model="bkPaymentLink"
+            name="bk_payment_link"
+            label="bk_payment_link"
+            rules="required"
+          />
 
           <div class="mt-4 flex flex-row justify-center">
             <button type="submit">
@@ -159,6 +166,7 @@ export default {
       category: "",
       instructor: "",
       paymentLink: "",
+      bkPaymentLink: "",
       promotional: "",
       thumbnail: "",
       type: "",
@@ -250,6 +258,7 @@ export default {
           type: this.type,
           instructor: this.instructor.id,
           paymentLink: this.paymentLink,
+          bkPaymentLink: this.bkPaymentLink,
           promotionalVimeoLink: this.promotional,
           thumbnail: file.id,
         });
