@@ -168,10 +168,7 @@
                     <span>{{ $t("purchases") }}</span>
                   </div>
                   <span class="font-mono text-gray-900"
-                    >${{
-                      parseFloat(course.purchases.length) *
-                      parseFloat(priceLabel)
-                    }}</span
+                    >${{ totalPurchase }}</span
                   >
                 </div>
                 <!--                <div class="flex items-center justify-between py-3 text-sm">-->
@@ -413,7 +410,7 @@ export default {
     const join = [
       {
         field: "purchases",
-        select: ["id"],
+        select: ["id", "price"],
       },
       {
         field: "instructor",
@@ -453,6 +450,14 @@ export default {
       return this.course.chapters.sort((a, b) =>
         a.chapterNumber.localeCompare(b.chapterNumber)
       );
+    },
+    totalPurchase() {
+      let totalPurchase = 0;
+      this.course.purchases.forEach((item) => {
+        console.log(item);
+        totalPurchase += parseFloat(item.price);
+      });
+      return totalPurchase;
     },
     ...mapGetters({
       getCourse: "course/getCourse",
