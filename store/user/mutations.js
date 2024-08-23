@@ -5,6 +5,10 @@ export default {
     state.users = users;
     state.totalRecord = length;
   },
+  SET_ADMINS(state, { admins, length }) {
+    state.admins = admins;
+    state.totalRecord = length;
+  },
   ADD_USER(state, user) {
     state.users = state.users.unshift(user);
   },

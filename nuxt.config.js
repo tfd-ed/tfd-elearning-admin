@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: "server",
 
   ssr: false,
 
@@ -36,6 +36,7 @@ export default {
     { src: "~/plugins/axios.js" },
     { src: "~/plugins/moment.js" },
     { src: "~/plugins/injector.js" },
+    { src: "~/plugins/vue2-filters" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -131,7 +132,7 @@ export default {
 
   // Nuxt Axios
   axios: {
-    proxy: true,
+    proxy: process.env.NODE_ENV === "dev",
     baseURL: process.env.BASE_URL || "http://localhost:80",
     // proxyHeaders: false,
     // credentials: true,
@@ -153,24 +154,42 @@ export default {
     rewriteRedirects: false,
     strategies: {
       local: {
+        scheme: "refresh",
         token: {
           property: "accessToken",
           required: true,
-          type: "bearer",
+          type: "Bearer",
+          global: true,
+          maxAge: 3600,
+        },
+        refreshToken: {
+          property: "refreshToken",
+          data: "refreshToken",
+          maxAge: 604800,
         },
         user: {
-          property: "false",
-          autoFetch: false,
+          property: false,
+          autoFetch: true,
         },
         endpoints: {
           login: {
             url: "v1/auth/admin-login",
             method: "post",
           },
-          logout: false,
+          refresh: { url: "v1/auth/refresh", method: "get" },
+          logout: { url: "v1/auth/logout", method: "get" },
           user: { url: "v1/auth/me", method: "get" },
         },
+        autoLogout: true,
       },
     },
+  },
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL || "http://localhost:80",
+    nodeEnv: process.env.NODE_ENV || "dev",
+  },
+  privateRuntimeConfig: {
+    baseURL: process.env.BASE_URL || "http://localhost:80",
+    nodeEnv: process.env.NODE_ENV || "dev",
   },
 };

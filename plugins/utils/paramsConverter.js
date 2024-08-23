@@ -1,6 +1,6 @@
 import { RequestQueryBuilder } from "@nestjsx/crud-request";
 
-export default function ({ params, fields, join }) {
+export default function ({ params, fields, join, filters = [] }) {
   let sort = [];
   params.sort.forEach((item) => {
     if (item.type === "asc" || item.type === "desc") {
@@ -17,11 +17,12 @@ export default function ({ params, fields, join }) {
       });
     }
   }
+  let finalFilter = [...filter, ...filters];
   return {
     convertedParams: RequestQueryBuilder.create({
       fields: fields,
       join: join,
-      filter: filter,
+      filter: finalFilter,
       sort: sort,
       page: params.page,
       limit: params.perPage,

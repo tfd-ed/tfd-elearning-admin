@@ -23,4 +23,19 @@ export default {
       length: response.total,
     });
   },
+  // eslint-disable-next-line no-unused-vars
+  async fetchAdmins({ dispatch, commit, getters, rootGetters }, { params }) {
+    const filter = [{ field: "roles", operator: "$cont", value: "ADMIN" }];
+    let response = await this.$axios.$get(api().users, {
+      params: {},
+      paramsSerializer: (param) => {
+        return paramsConverter({ params: params, filters: filter })
+          .convertedParams;
+      },
+    });
+    commit("SET_ADMINS", {
+      admins: response.data,
+      length: response.total,
+    });
+  },
 };

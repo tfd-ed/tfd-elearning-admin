@@ -14,8 +14,10 @@
       <input
         :id="id"
         v-no-autocomplete
+        :disabled="disabled"
         :value="value"
         class="w-full px-0 pt-3.5 pb-0 text-sm placeholder-transparent border-none focus:ring-0 peer"
+        s
         :type="type"
         :placeholder="getPlaceHolder"
         @input="onInput"
@@ -60,9 +62,10 @@
         </svg>
       </span>
       <span
-        class="absolute bg-transparent text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-sarpheab peer-focus:dark:text-sarpheab peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-4 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+        class="absolute bg-transparent text-sm duration-300 transform -translate-y-2 scale-75 top-2 z-10 origin-[0] dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-sarpheab peer-focus:dark:text-sarpheab peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-4 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
+        :class="disabled ? 'text-red-500' : 'text-gray-500 dark:text-gray-400'"
       >
-        {{ $t(label) }}
+        {{ $t(label) }} {{ disabled ? "(Not Applicable)" : "" }}
       </span>
     </label>
     <div class="text-xs font-medium text-red-500 mt-2">
@@ -101,6 +104,10 @@ export default {
     type: {
       type: String,
       default: "text",
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

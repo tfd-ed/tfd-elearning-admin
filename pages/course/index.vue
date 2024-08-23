@@ -72,6 +72,28 @@
                   }}</span>
                 </span>
               </div>
+              <div v-else-if="prop.column.field === 'type'">
+                <span
+                  class="flex items-center justify-center w-full space-x-1.5 rounded-full border-2 px-3 py-1 text-xs font-medium text-gray-800"
+                  :class="
+                    prop.row.type === 'PAID'
+                      ? 'border-blue-500'
+                      : 'border-red-400'
+                  "
+                >
+                  <MoneyIcon
+                    class="-ml-0.5 h-5 w-5 shrink-0 rounded-full"
+                    :class="
+                      prop.row.type === 'PAID'
+                        ? 'text-blue-600 '
+                        : 'text-red-500'
+                    "
+                  />
+                  <span class="capitalize">{{
+                    $t(prop.row.type.toString().toLowerCase())
+                  }}</span>
+                </span>
+              </div>
               <div v-else-if="prop.column.field === 'purchases'">
                 <p class="font-semibold text-blue-600">
                   {{
@@ -93,6 +115,12 @@
               color="bg-blue-600"
               @onClick="onApproved"
             />
+            <ShadowButton
+              class="m-1"
+              text="make_drafted"
+              color="bg-yellow-600"
+              @onClick="onMakeDrafted"
+            />
           </template>
         </TableTemplate>
       </div>
@@ -107,12 +135,13 @@ import ShadowButton from "~/components/buttons/shadow-button";
 import NewCourseModal from "~/components/modals/new-course-modal";
 import TableTemplate from "@/components/tables/table-template";
 import { createHelpers } from "vuex-map-fields";
+import MoneyIcon from "@/components/icons/money-icon";
 const { mapFields } = createHelpers({
   getterType: "course/getField",
   mutationType: "course/updateField",
 });
 export default {
-  components: { TableTemplate, NewCourseModal, ShadowButton },
+  components: { MoneyIcon, TableTemplate, NewCourseModal, ShadowButton },
   layout: "home",
   middleware: "auth",
   data() {
@@ -147,6 +176,11 @@ export default {
           sortable: true,
         },
         {
+          label: this.$i18n.t("course_type"),
+          field: "type",
+          sortable: true,
+        },
+        {
           label: this.$i18n.t("purchases"),
           field: "purchases",
           sortable: false,
@@ -169,6 +203,7 @@ export default {
     }),
     ...mapMutations({
       publishCourse: "course/PUBLISHED_COURSE",
+      makeDraftedCourse: "course/MAKE_DRAFTED_COURSE",
     }),
     onSelected(param) {
       this.selected = param.selectedRows;
@@ -176,16 +211,33 @@ export default {
     async onApproved() {
       for (const select of this.selected) {
         try {
-          const result = await this.$axios.$patch(
-            `${this.$api.courses}/${select.id}`,
-            {
-              status: "PUBLISHED",
-            }
-          );
+          await this.$axios.$patch(`${this.$api.courses}/${select.id}`, {
+            status: "PUBLISHED",
+          });
           this.publishCourse(select.id);
           this.$toast.success(select.title + ": " + this.$i18n.t("published"), {
             duration: 3000,
           });
+        } catch (e) {
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+    },
+    async onMakeDrafted() {
+      for (const select of this.selected) {
+        try {
+          await this.$axios.$patch(`${this.$api.courses}/${select.id}`, {
+            status: "DRAFTED",
+          });
+          this.makeDraftedCourse(select.id);
+          this.$toast.error(
+            select.title + ": " + this.$i18n.t("make_drafted"),
+            {
+              duration: 3000,
+            }
+          );
         } catch (e) {
           this.$toast.error(e.response.data.message, {
             duration: 3000,

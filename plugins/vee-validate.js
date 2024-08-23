@@ -8,6 +8,7 @@ import {
   alpha_dash,
   alpha_spaces,
   max,
+  max_value,
   digits,
   numeric,
   double,
@@ -20,6 +21,7 @@ extend("required", required);
 extend("email", email);
 extend("min", min);
 extend("max", max);
+extend("max_value", max_value);
 extend("confirmed", confirmed);
 extend("alpha", alpha);
 extend("alpha_dash", alpha_dash);

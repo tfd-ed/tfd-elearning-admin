@@ -32,6 +32,14 @@
             rules="required"
             :auto-complete="false"
           />
+          <SimpleSelectLocal
+            id="course_type"
+            v-model="type"
+            name="course_type"
+            label="course_type"
+            rules="required"
+            :options="options"
+          />
           <SimpleSelect
             id="course_category"
             v-model="category"
@@ -75,6 +83,7 @@
             <SimpleValidatedInput
               id="course_price"
               v-model="price"
+              :disabled="type === 'FREE'"
               name="course_price"
               label="course_price"
               rules="required|double"
@@ -89,10 +98,25 @@
           </div>
 
           <SimpleValidatedInput
+            id="promotional_vimeo_link"
+            v-model="promotional"
+            name="promotional_vimeo_link"
+            label="promotional_vimeo_link"
+            rules="required"
+          />
+
+          <SimpleValidatedInput
             id="payment_link"
             v-model="paymentLink"
             name="payment_link"
             label="payment_link"
+            rules="required"
+          />
+          <SimpleValidatedInput
+            id="bk_payment_link"
+            v-model="bkPaymentLink"
+            name="bk_payment_link"
+            label="bk_payment_link"
             rules="required"
           />
 
@@ -116,8 +140,11 @@ import SimpleSelect from "@/components/inputs/simple-select";
 import { mapMutations } from "vuex";
 import SimpleFileUpload from "@/components/inputs/simple-file-upload";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
+import SimpleSelectLocal from "@/components/inputs/simple-select-local";
+import { CourseEnum } from "static/enums/course-enum";
 export default {
   components: {
+    SimpleSelectLocal,
     ValidatedRichTextArea,
     SimpleFileUpload,
     SimpleValidatedTextArea,
@@ -135,12 +162,16 @@ export default {
       title: "",
       description: "",
       shortDescription: "",
-      price: "",
+      price: 0.0,
       category: "",
       instructor: "",
       paymentLink: "",
+      bkPaymentLink: "",
+      promotional: "",
       thumbnail: "",
+      type: "",
       chapters: [],
+      options: CourseEnum,
       customToolbar: [
         [
           {
@@ -224,8 +255,11 @@ export default {
           shortDescription: this.shortDescription,
           price: parseFloat(this.price),
           category: this.category.id,
+          type: this.type,
           instructor: this.instructor.id,
           paymentLink: this.paymentLink,
+          bkPaymentLink: this.bkPaymentLink,
+          promotionalVimeoLink: this.promotional,
           thumbnail: file.id,
         });
         this.loading = false;

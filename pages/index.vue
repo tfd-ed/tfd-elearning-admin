@@ -85,8 +85,8 @@ export default {
         let response = await this.$auth.loginWith("local", {
           data: this.login,
         });
-        this.$auth.setUser(response.data.user);
-        this.$router.push(this.localePath("/course"));
+        // this.$auth.setUser(response.data.user);
+        await this.$router.push(this.localePath("/course"));
         this.logging = false;
         this.logged = true;
         this.login = {
@@ -96,7 +96,7 @@ export default {
       } catch (err) {
         // this.$toast.global.error(); //Using custom toast
         this.logging = false;
-
+        console.log(err);
         this.$toast.error(err.response.data.message, {
           duration: 3000,
         });

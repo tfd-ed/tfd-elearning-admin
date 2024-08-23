@@ -147,7 +147,9 @@
                     <MoneyIcon class="text-green-600" />
                     <span>{{ $t("price") }}</span>
                   </div>
-                  <span class="font-mono text-gray-900">{{ priceLabel }}</span>
+                  <span class="font-mono text-gray-900">{{
+                    course.type === "PAID" ? priceLabel : $t("free")
+                  }}</span>
                 </div>
                 <div class="flex items-center justify-between py-3 text-sm">
                   <div class="flex items-center space-x-2 text-gray-700">
@@ -166,10 +168,7 @@
                     <span>{{ $t("purchases") }}</span>
                   </div>
                   <span class="font-mono text-gray-900"
-                    >${{
-                      parseFloat(course.purchases.length) *
-                      parseFloat(priceLabel)
-                    }}</span
+                    >${{ totalPurchase }}</span
                   >
                 </div>
                 <!--                <div class="flex items-center justify-between py-3 text-sm">-->
@@ -223,6 +222,14 @@
                   rules="required"
                 />
 
+                <SimpleValidatedInput
+                  id="course_url_edit"
+                  v-model="course.titleURL"
+                  name="course_url"
+                  label="course_url"
+                  rules="required"
+                />
+
                 <SimpleSelect
                   id="course_category_edit"
                   v-model="course.category"
@@ -239,6 +246,14 @@
                   label="instructor"
                   route="instructors"
                   rules="required"
+                />
+                <SimpleSelectLocal
+                  id="course_type_edit"
+                  v-model="course.type"
+                  name="course_type"
+                  label="course_type"
+                  rules="required"
+                  :options="options"
                 />
 
                 <SimpleValidatedTextArea
@@ -259,6 +274,7 @@
                   <SimpleValidatedInput
                     id="course_price_edit"
                     v-model="course.price"
+                    :disabled="course.type === 'FREE'"
                     name="course_price"
                     label="course_price"
                     rules="required|double"
@@ -279,6 +295,20 @@
                   label="payment_link"
                   rules="required"
                 />
+                <SimpleValidatedInput
+                  id="bk_payment_link_edit"
+                  v-model="course.bkPaymentLink"
+                  name="bk_payment_link"
+                  label="bk_payment_link"
+                  rules="required"
+                />
+                <SimpleValidatedInput
+                  id="promotional_vimeo_link_edit"
+                  v-model="course.promotionalVimeoLink"
+                  name="promotional_vimeo_link"
+                  label="promotional_vimeo_link"
+                  rules="required"
+                />
 
                 <div class="mt-4 flex flex-row justify-center">
                   <button type="submit">
@@ -292,10 +322,15 @@
             </p>
             <div class="flex flex-col space-y-12">
               <ChapterEditCard
-                v-for="(chapter, index) in course.chapters"
+                v-for="(chapter, index) in orderBy(
+                  course.chapters,
+                  'chapterNumber',
+                  true
+                )"
                 :key="index"
                 :chapter="chapter"
                 :index="index"
+                @deleteCommand="deleteRequest"
               ></ChapterEditCard>
             </div>
 
@@ -335,8 +370,12 @@ import ChapterIcon from "@/components/icons/chapter-icon";
 import ChapterEditCard from "@/components/cards/chapter-edit-card";
 import ValidatedRichTextArea from "@/components/inputs/validated-rich-text-area";
 import StatusIcon from "~/components/icons/status-icon";
+import Vue2Filters from "vue2-filters";
+import SimpleSelectLocal from "@/components/inputs/simple-select-local";
+import { CourseEnum } from "static/enums/course-enum";
 export default {
   components: {
+    SimpleSelectLocal,
     StatusIcon,
     ValidatedRichTextArea,
     ChapterEditCard,
@@ -353,6 +392,7 @@ export default {
     SimpleSelect,
     SimpleValidatedInput,
   },
+  mixins: [Vue2Filters.mixin],
   layout: "home",
   data() {
     return {
@@ -363,13 +403,14 @@ export default {
       title: "",
       replacedTB: "",
       priceLabel: "",
+      options: CourseEnum,
     };
   },
   async fetch() {
     const join = [
       {
         field: "purchases",
-        select: ["id"],
+        select: ["id", "price"],
       },
       {
         field: "instructor",
@@ -398,12 +439,26 @@ export default {
         },
       }
     );
-    console.log(course);
+    // console.log(course);
     this.course = course;
     this.title = course.title;
     this.priceLabel = course.price;
   },
   computed: {
+    orderedChapters() {
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      return this.course.chapters.sort((a, b) =>
+        a.chapterNumber.localeCompare(b.chapterNumber)
+      );
+    },
+    totalPurchase() {
+      let totalPurchase = 0;
+      this.course.purchases.forEach((item) => {
+        console.log(item);
+        totalPurchase += parseFloat(item.price);
+      });
+      return totalPurchase;
+    },
     ...mapGetters({
       getCourse: "course/getCourse",
     }),
@@ -423,6 +478,7 @@ export default {
     },
     async editCourse() {
       try {
+        this.loading = true;
         let file = "";
         if (this.replacedTB) {
           /**
@@ -449,13 +505,17 @@ export default {
           `${this.$api.courses}/${this.$route.params.id}`,
           {
             title: this.course.title,
+            titleURL: this.course.titleURL,
             shortDescription: this.course.shortDescription,
             description: this.course.description,
             price: parseFloat(this.course.price),
             instructor: this.course.instructor,
+            type: this.course.type,
             thumbnail: file ? file.id : this.course.thumbnail.id,
             category: this.course.category,
             paymentLink: this.course.paymentLink,
+            bkPaymentLink: this.course.bkPaymentLink,
+            promotionalVimeoLink: this.course.promotionalVimeoLink,
           }
         );
         this.popCourseUpdated();
@@ -465,7 +525,9 @@ export default {
         setTimeout(() => {
           this.course.thumbnail = file;
         }, 3000);
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         console.log(e);
         this.$toast.error(e.response.data.message, {
           duration: 3000,
@@ -484,6 +546,7 @@ export default {
     },
     async makeDrafted() {
       try {
+        this.loading = true;
         const updated = await this.$axios.$patch(
           `${this.$api.courses}/${this.$route.params.id}`,
           {
@@ -492,7 +555,9 @@ export default {
         );
         this.popCourseUpdated();
         this.course.status = "DRAFTED";
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });
@@ -500,6 +565,7 @@ export default {
     },
     async makePublished() {
       try {
+        this.loading = true;
         const updated = await this.$axios.$patch(
           `${this.$api.courses}/${this.$route.params.id}`,
           {
@@ -508,11 +574,43 @@ export default {
         );
         this.popCourseUpdated();
         this.course.status = "PUBLISHED";
+        this.loading = false;
       } catch (e) {
+        this.loading = false;
         this.$toast.error(e.response.data.message, {
           duration: 3000,
         });
       }
+    },
+    async deleteRequest(id) {
+      this.loading = true;
+      if (!id) {
+        /**
+         * Delete empty chapter
+         */
+        this.course.chapters.splice(-1);
+      } else {
+        try {
+          /**
+           * Remove from Server
+           */
+          this.$axios.$delete(`${this.$api.chapters}/${id}`);
+          /**
+           * Remove from Chapter List
+           * @type {T[]}
+           */
+          this.course.chapters = this.course.chapters.filter(
+            (item) => item.id !== id
+          );
+        } catch (e) {
+          this.loading = false;
+          console.log(e);
+          this.$toast.error(e.response.data.message, {
+            duration: 3000,
+          });
+        }
+      }
+      this.loading = false;
     },
   },
 };
