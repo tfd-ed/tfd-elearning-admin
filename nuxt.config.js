@@ -24,7 +24,7 @@ export default {
   css: ["@/assets/css/main.css", "@/assets/css/tailwind.css"],
 
   server: {
-    // host: "0.0.0.0",
+    host: "0.0.0.0",
     port: process.env.PORT,
   },
 
