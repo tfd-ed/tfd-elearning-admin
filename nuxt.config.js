@@ -1,8 +1,8 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "server",
+  target: process.env.TARGET,
 
-  ssr: false,
+  ssr: process.env.SSR,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -22,6 +22,11 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ["@/assets/css/main.css", "@/assets/css/tailwind.css"],
+
+  server: {
+    host: process.env.HOST_URL,
+    port: process.env.PORT,
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -132,10 +137,10 @@ export default {
 
   // Nuxt Axios
   axios: {
-    proxy: process.env.NODE_ENV === "dev",
-    baseURL: process.env.BASE_URL || "http://localhost:80",
-    // proxyHeaders: false,
-    // credentials: true,
+    /**
+     * Proxy and BaseURL can't be used at the same time
+     */
+    proxy: process.env.PROXY,
   },
   proxy: {
     "/v1/": {
